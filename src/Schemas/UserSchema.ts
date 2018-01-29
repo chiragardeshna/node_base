@@ -1,4 +1,4 @@
-import {Schema} from "mongoose"
+import {Schema} from "mongoose";
 
 export let userSchema: Schema = new Schema({
     email: String,

@@ -11,12 +11,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/users', (req, res, next) => {
-    let controller = (new UserController(new User())).boot(req, res);
+    let controller = (new UserController(User)).boot(req, res);
     return controller.collection();
 });
 
 router.post('/users', (req, res, next) => {
-    let controller = (new UserController(new User())).boot(req, res);
+    let controller = (new UserController(User)).boot(req, res);
     return controller.store();
 });
 

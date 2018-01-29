@@ -1,6 +1,6 @@
 import Controller from "./Controller";
 import {IUserModel} from "../Interfaces/IUserModel";
-import {IUser} from "../Interfaces/IUser";
+import {IUser} from "../Interfaces/Entities/IUser";
 
 class UserController extends Controller {
 
