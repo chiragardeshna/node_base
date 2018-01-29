@@ -6,6 +6,8 @@ let tsProject = ts.createProject("./tsconfig.json");
 let files = [
 	'./src/*',
 	'./src/**/*',
+    './test/*',
+    './test/**/*',
 ];
 
 gulp.task('scripts', () => {
