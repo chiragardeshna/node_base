@@ -20,7 +20,7 @@ class UserController extends Controller {
     public async store() {
         let user = null;
         try {
-            let data: IUser = {email: "test@g.com", firstName: "First Name", lastName: "Last Name"};
+            let data: IUser = {email: "test@g.com", firstName: "First Name", lastName: "Last Name", password: "Password"};
 
             let validation = new Validator(this.request.body, UserValidator.rules());
             if (validation.fails()) {
