@@ -1,8 +1,8 @@
 class TestObject {
     public arg: number;
 
-    constructor(arg: string) {
-        this.arg = Math.random();
+    constructor(arg: number) {
+        this.arg = arg;
     }
 
     public getName() {

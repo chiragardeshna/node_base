@@ -8,29 +8,25 @@ describe('new Container().register()', () => {
     it('should register factory function.', () => {
 
         container.register("testObject", () => {
-            return new TestObject("test");
+            let name = Math.random();
+            return new TestObject(name);
         });
 
         let testObject = container.make("testObject");
-
-        expect(testObject).to.equal(new TestObject("test"));
     });
 });
 
 describe('new Container().register()', () => {
     it('should register singleton object.', () => {
 
-        let obj = new TestObject("test");
-
-        container.register("testObject", () => obj, "singleton");
+        container.register("testObject", () => {
+            let name = Math.random();
+            return new TestObject(name);
+        }, "singleton");
 
         let testObject = container.make("testObject");
 
         let testObject2 = container.make("testObject");
-
-        console.log(testObject);
-
-        console.log(testObject2);
 
         expect(testObject === testObject2).to.equal(true);
     });

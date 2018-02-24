@@ -1,8 +1,10 @@
 class Container {
 
+    static TYPE = {SINGLETON: "singleton"};
+
     protected registry: Object = {};
 
-    public register(name: string, callback: Function, type?: string) {
+    public register(name: string, callback: Function, type: string = "concrete") {
         this.registry[name] = {callback: callback, type: type, resolved: null};
     }
 
@@ -12,9 +14,17 @@ class Container {
 
         if (typeof entry === "undefined") throw "Object is not registered. Use Container.register() to register object.";
 
-        console.log(entry.callback);
+        let resolved = entry["resolved"];
 
-        return entry.callback();
+        if (entry.type === Container.TYPE.SINGLETON) {
+            if (entry["resolved"] !== null) return resolved;
+        }
+
+        console.log(resolved);
+
+        resolved = this.registry[name]["resolved"] = entry.callback();
+
+        return resolved;
     }
 }
 
