@@ -3,6 +3,7 @@ import {IUserModel} from "../Interfaces/Models/IUserModel";
 import {IUser} from "../Interfaces/Entities/IUser";
 import * as Validator from "validatorjs";
 import {UserValidator} from "../Validators/UserValidator";
+import Hash from "../Services/Hash/Hash";
 
 class UserController extends Controller {
 
@@ -11,7 +12,6 @@ class UserController extends Controller {
     constructor(userRepo) {
         super();
         this.userRepo = userRepo();
-        console.log(typeof this.userRepo);
     }
 
     public collection() {
@@ -28,8 +28,10 @@ class UserController extends Controller {
                 return this.response.json({status: "Failure", errors: validation.errors});
             }
 
-            Object.assign(this.userRepo, data);
+            let password = await Hash.make(data["password"], 3);
+            Object.assign(this.userRepo, data, {password: password});
             user = await this.userRepo.save();
+
             return this.response.json({status: "Success", data: user});
         } catch (e) {
             console.log(e);
