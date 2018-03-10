@@ -1,21 +1,21 @@
-let gulp = require('gulp');
-let ts = require('gulp-typescript');
+var gulp = require('gulp');
+var ts = require('gulp-typescript');
 
-let tsProject = ts.createProject("./tsconfig.json");
+var tsProject = ts.createProject("./tsconfig.json");
 
-let files = [
-	'./src/*',
-	'./src/**/*',
-    './test/*',
-    './test/**/*',
+var srcFiles = [
+    './src/*',
+    './src/**/*'
+    /*'./test/!*',
+    './test/!**!/!*',*/
 ];
 
-gulp.task('scripts', () => {
-	return gulp.src(files)
-	.pipe(tsProject())
-	.pipe(gulp.dest('dist'));
+gulp.task('scripts', function () {
+    return gulp.src(srcFiles)
+        .pipe(tsProject())
+        .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', ['scripts'], () => {
-	gulp.watch(files, ['scripts']);
+gulp.task('watch', ['scripts'], function () {
+    gulp.watch(srcFiles, ['scripts']);
 });

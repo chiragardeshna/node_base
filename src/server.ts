@@ -1,9 +1,9 @@
 import * as http from "http";
-import App from "./app";
+import app from "./app";
 
-App.set('port', 3000);
+app.express.set('port', 3000);
 
-const server = http.createServer(App);
+const server = http.createServer(app.express);
 server.listen(3000);
 
 server.on('listening', onListening);

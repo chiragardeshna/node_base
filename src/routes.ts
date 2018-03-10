@@ -1,8 +1,5 @@
 import * as express from "express";
-// Controllers.
-import UserController from "./Controllers/UserController";
-// Models.
-import User from "./Models/User";
+import app from "./app";
 
 let router = express.Router();
 
@@ -11,12 +8,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/users', (req, res, next) => {
-    let controller = (new UserController(User)).boot(req, res);
+    let controller = app.get("UserController");
     return controller.collection();
 });
 
 router.post('/users', (req, res, next) => {
-    let controller = (new UserController(User)).boot(req, res);
+    let controller = app.get("UserController");
     return controller.store();
 });
 

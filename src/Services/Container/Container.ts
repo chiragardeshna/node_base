@@ -16,11 +16,7 @@ class Container {
 
         let resolved = entry["resolved"];
 
-        if (entry.type === Container.TYPE.SINGLETON) {
-            if (entry["resolved"] !== null) return resolved;
-        }
-
-        console.log(resolved);
+        if (entry.type === Container.TYPE.SINGLETON && entry["resolved"] !== null) return resolved;
 
         resolved = this.registry[name]["resolved"] = entry.callback();
 
@@ -28,4 +24,4 @@ class Container {
     }
 }
 
-export default new Container();
+export default Container;

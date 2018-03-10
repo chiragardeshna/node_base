@@ -1,8 +1,10 @@
-import container from "../../../src/Services/Container/Container";
+import Container from "../../../src/Services/Container/Container";
 import TestObject from "./TestObject";
 
 import 'mocha';
 import {expect} from 'chai';
+
+let container = new Container();
 
 describe('new Container().register()', () => {
     it('should register factory function.', () => {
@@ -13,6 +15,12 @@ describe('new Container().register()', () => {
         });
 
         let testObject = container.make("testObject");
+
+        let testObject2 = container.make("testObject");        
+
+        console.log(testObject, testObject2);
+
+        expect(testObject.name !== testObject2.name).to.equal(false);
     });
 });
 
@@ -28,6 +36,8 @@ describe('new Container().register()', () => {
 
         let testObject2 = container.make("testObject");
 
-        expect(testObject === testObject2).to.equal(true);
+        console.log(testObject, testObject2);
+
+        expect(testObject.name === testObject2.name).to.equal(true);
     });
 });
