@@ -1,4 +1,5 @@
-import {Request, Response} from "express";
+import {Response} from "express";
+import Request from "../Services/Request/Request";
 
 class Controller {
 

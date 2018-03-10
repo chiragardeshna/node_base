@@ -5,6 +5,9 @@ import config from "./Config/Database";
 import {MongoConnector} from "./Services/Database/MongoConnector";
 import {Mongoose} from "mongoose";
 import Container from "./Services/Container/Container";
+
+
+import Request from "./Services/Request/Request";
 import DIController from "./DI/DIController";
 
 class App {
@@ -42,7 +45,7 @@ class App {
         this.container.register("express", () => this.express);
         this.container.register("db", () => this.connection);
         this.express.use(function (req, res, next) {
-            this.container.register("request", () => req);
+            this.container.register("request", () => new Request(req));
             this.container.register("response", () => res);
             this.container.register("next", () => next);
             this.container = DIController(this).container;

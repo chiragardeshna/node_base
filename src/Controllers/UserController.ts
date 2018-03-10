@@ -10,7 +10,8 @@ class UserController extends Controller {
 
     constructor(userRepo) {
         super();
-        this.userRepo = userRepo;
+        this.userRepo = userRepo();
+        console.log(typeof this.userRepo);
     }
 
     public collection() {
@@ -20,9 +21,9 @@ class UserController extends Controller {
     public async store() {
         let user = null;
         try {
-            let data: IUser = {email: "test@g.com", firstName: "First Name", lastName: "Last Name", password: "Password"};
 
-            let validation = new Validator(this.request.body, UserValidator.rules());
+            let data: IUser = this.request.get();
+            let validation = new Validator(data, UserValidator.rules());
             if (validation.fails()) {
                 return this.response.json({status: "Failure", errors: validation.errors});
             }

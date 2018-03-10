@@ -4,6 +4,7 @@ export let userSchema: Schema = new Schema({
     email: String,
     firstName: String,
     lastName: String,
+    password: String,
     createdAt: Date
 });
 userSchema.pre("save", (next) => {
