@@ -9,6 +9,7 @@
   "scripts": {
     "live-build": "gulp watch",
     "server": "nodemon ./dist/server.js",
+    "serve": "npm run live-build",
     "test": "mocha -r ts-node/register test/**/*.ts"
   },
   "devDependencies": {

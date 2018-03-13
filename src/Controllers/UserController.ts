@@ -4,6 +4,7 @@ import {IUser} from "../Interfaces/Entities/IUser";
 import * as Validator from "validatorjs";
 import {UserValidator} from "../Validators/UserValidator";
 import Hash from "../Services/Hash/Hash";
+import Validate from "../Decorators/Validate";
 
 class UserController extends Controller {
 
@@ -15,6 +16,7 @@ class UserController extends Controller {
     }
 
     public collection() {
+        console.log("test");
         return this.response.json({message: "HI FROM USER controller"});
     }
 
