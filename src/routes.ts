@@ -1,5 +1,7 @@
 import * as express from "express";
 import app from "./app";
+// Middleware
+import UserRegistration from "./Middlewares/Requests/UserRegistration";
 
 let router = express.Router();
 
@@ -12,7 +14,7 @@ router.get('/users', (req, res, next) => {
     return controller.collection();
 });
 
-router.post('/users', (req, res, next) => {
+router.post('/users', [ UserRegistration ], (req, res, next) => {
     let controller = app.get("UserController");
     return controller.store();
 });
