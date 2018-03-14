@@ -9,6 +9,7 @@ import Container from "./Services/Container/Container";
 
 import Request from "./Services/Request/Request";
 import DIController from "./DI/DIController";
+import DIBusinessLogic from "./DI/DIBusinessLogic";
 
 class App {
 
@@ -48,6 +49,7 @@ class App {
             this.container.register("request", () => new Request(req));
             this.container.register("response", () => res);
             this.container.register("next", () => next);
+            this.container = DIBusinessLogic(this).container;
             this.container = DIController(this).container;
             next();
         }.bind(this));

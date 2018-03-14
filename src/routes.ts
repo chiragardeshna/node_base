@@ -19,4 +19,9 @@ router.post('/users', [ UserRegistration ], (req, res, next) => {
     return controller.store();
 });
 
+router.post('/auth', (req, res, next) => {
+    let controller = app.get("AuthController");
+    return controller.login();
+});
+
 export default router;

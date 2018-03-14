@@ -1,10 +1,7 @@
 import Controller from "./Controller";
 import IAuth from "../Interfaces/BusinessLogic/Auth";
-import Auth from "../BusinessLogic/Auth";
-import {IUserModel} from "../Interfaces/Models/IUserModel";
-import {IUser} from "../Interfaces/Entities/IUser";
-import * as Validator from "validatorjs";
-import {UserValidator} from "../Validators/UserValidator";
+import SuccessResponse from "../Services/Response/SuccessResponse";
+import NotFoundResponse from "../Services/Response/NotFoundResponse";
 
 class AuthController extends Controller {
 
@@ -15,8 +12,17 @@ class AuthController extends Controller {
         this.auth = auth;
     }
 
-    public async login(){}
-    
+    public async login() {
+        try {
+            if (!await this.auth.attempt(this.request.get("username"), this.request.get("password"))) throw "Model Not Found.";
+            let user = this.auth.user();
+            return SuccessResponse(this.response, user);
+        } catch (e) {
+            console.log(e);
+            return NotFoundResponse(this.response);
+        }
+    }
+
 }
 
 export default AuthController;
