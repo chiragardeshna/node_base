@@ -14,6 +14,13 @@ export default class Request {
         return params;
     }
 
+    public session(key: string | Object = null) {
+        if (key === null) return this.request.session;
+        if (typeof key === "string") return this.request.session[key] ? this.request.session[key] : null;
+        this.request.session = Object.assign(this.request.session, key);
+        return;
+    }
+
     public getExpressRequest() {
         return this.request;
     }

@@ -12,6 +12,14 @@ class UserController extends Controller {
         this.userRepo = userRepo();
     }
 
+    public index() {
+
+        this.request.session({test: "test"});
+        console.log(this.request.session());
+
+        return this.response.send("TEST THIS");
+    }
+
     public collection() {
         return this.response.json({message: "HI FROM USER controller"});
     }

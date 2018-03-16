@@ -2,14 +2,18 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import router from "./routes";
 import config from "./Config/Database";
+
 import {MongoConnector} from "./Services/Database/MongoConnector";
 import {Mongoose} from "mongoose";
 import Container from "./Services/Container/Container";
 
-
+import * as session from "express-session";
+import sessionConfig from "./Config/Session";
 import Request from "./Services/Request/Request";
 import DIController from "./DI/DIController";
 import DIBusinessLogic from "./DI/DIBusinessLogic";
+
+const MongoStore = require('connect-mongo')(session);
 
 class App {
 
@@ -25,9 +29,8 @@ class App {
 
         this.container = new Container();
 
-        this.register();
-
         Promise.all([this.database()]).then(() => {
+            this.register();
             this.middleware();
             this.routes();
         });
@@ -36,6 +39,10 @@ class App {
     private middleware(): void {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({extended: true}));
+        let store = new MongoStore({mongooseConnection: this.get("connection").connection});
+        this.express.use(session(
+            Object.assign(sessionConfig, {store: store})
+        ));
     }
 
     private routes(): void {
@@ -44,7 +51,7 @@ class App {
 
     private register() {
         this.container.register("express", () => this.express);
-        this.container.register("db", () => this.connection);
+        this.container.register("connection", () => this.connection);
         this.express.use(function (req, res, next) {
             this.container.register("request", () => new Request(req));
             this.container.register("response", () => res);
