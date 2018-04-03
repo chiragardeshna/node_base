@@ -17,9 +17,19 @@ gulp.task('watch', ['compile'], function(){
 	return gulp.watch('./src/**/*', ['compile']);
 });
 
-gulp.task('dev', ['watch'], function(){
+gulp.task('copy-views', function(){
+	return gulp.src('./src/Resources/**/*')
+    .pipe(cache('un_modified_views'))
+    .pipe(gulp.dest('./dist/Resources'));
+});
+
+gulp.task('watch-views', function(){
+   return gulp.watch('./src/Resources/**/*', ['copy-views']);
+});
+
+gulp.task('dev', ['watch', 'watch-views'], function(){
 	return nodemon({
-		script: 'dist/server.js',
+		script: 'dist/server.js'
 	}).on('restart', function(){
 		console.log('restarted');
 	});

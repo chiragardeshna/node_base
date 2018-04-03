@@ -13,14 +13,11 @@ class UserController extends Controller {
     }
 
     public index() {
-
-        this.request.session({test: "test"});
-        console.log(this.request.session());
-
-        return this.response.send("TEST THIS");
+        return this.response.render('index', {title: "Pug TEST", message: "This sis pug"});
     }
 
     public collection() {
+        console.log(this.request.session("authenticated"));
         return this.response.json({message: "HI FROM USER controller"});
     }
 

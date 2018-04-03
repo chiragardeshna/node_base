@@ -7,7 +7,7 @@ let router = express.Router();
 
 router.get('/', (req, res, next) => {
 
-    console.log(req.session.views);
+    console.log(req.session["authenticated"]);
 
     res.json({message: "This is test message"});
 });
@@ -16,7 +16,6 @@ router.get('/users/index', (req, res, next) => {
     let controller = app.get("UserController");
     return controller.index();
 });
-
 
 router.get('/users', (req, res, next) => {
     let controller = app.get("UserController");

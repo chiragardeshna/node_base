@@ -37,8 +37,14 @@ class App {
     }
 
     private middleware(): void {
+
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({extended: true}));
+
+        this.express.use(express.static(__dirname + "/Resources/assets"));
+        this.express.set("views", __dirname + "/Resources/Views");
+        this.express.set("view engine", "pug");
+
         let store = new MongoStore({mongooseConnection: this.get("connection").connection});
         this.express.use(session(
             Object.assign(sessionConfig, {store: store})
