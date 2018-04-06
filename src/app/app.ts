@@ -12,6 +12,7 @@ import sessionConfig from "./Config/Session";
 import Request from "./Services/Request/Request";
 import DIController from "./DI/DIController";
 import DIBusinessLogic from "./DI/DIBusinessLogic";
+import {dirname} from "path";
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -41,8 +42,10 @@ class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({extended: true}));
 
-        this.express.use(express.static(__dirname + "/Resources/assets"));
-        this.express.set("views", __dirname + "/Resources/Views");
+        console.log(dirname(__dirname));
+
+        this.express.use(express.static(dirname(__dirname)  + "/public/assets"));
+        this.express.set("views", dirname(__dirname) + "/public/views");
         this.express.set("view engine", "pug");
 
         let store = new MongoStore({mongooseConnection: this.get("connection").connection});

@@ -1,7 +1,7 @@
-import Controller from "./Controller";
-import IAuth from "../Interfaces/BusinessLogic/Auth";
-import SuccessResponse from "../Services/Response/SuccessResponse";
-import UnAuthorizedResponse from "../Services/Response/UnAuthorizedResponse";
+import Controller from "../Controller";
+import IAuth from "../../Interfaces/BusinessLogic/Auth";
+import SuccessResponse from "../../Services/Response/SuccessResponse";
+import UnAuthorizedResponse from "../../Services/Response/UnAuthorizedResponse";
 
 class AuthController extends Controller {
 
@@ -13,6 +13,10 @@ class AuthController extends Controller {
     }
 
     public async login() {
+        this.response.render('admin/sign_in');
+    }
+
+    public async attempt() {
         try {
             if (!await this.auth.attempt(this.request.get("username"), this.request.get("password"))) throw ".";
             let user = this.auth.user();

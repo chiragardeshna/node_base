@@ -7,29 +7,29 @@ var cache = require('gulp-cached');
 var tsProject = ts.createProject("./tsconfig.json");
 
 gulp.task('compile', function () {
-	return gulp.src('./src/**/*')
+	return gulp.src('./src/app/**/*')
 	.pipe(cache('un_modified'))
 	.pipe(tsProject())
-	.pipe(gulp.dest('./dist'));
+	.pipe(gulp.dest('./dist/app'));
 });
 
 gulp.task('watch', ['compile'], function(){
-	return gulp.watch('./src/**/*', ['compile']);
+	return gulp.watch('./src/app/**/*', ['compile']);
 });
 
 gulp.task('copy-views', function(){
-	return gulp.src('./src/Resources/**/*')
+	return gulp.src('./src/public/**/*')
     .pipe(cache('un_modified_views'))
-    .pipe(gulp.dest('./dist/Resources'));
+    .pipe(gulp.dest('./dist/public'));
 });
 
 gulp.task('watch-views', function(){
-   return gulp.watch('./src/Resources/**/*', ['copy-views']);
+   return gulp.watch('./src/public/**/*', ['copy-views']);
 });
 
-gulp.task('dev', ['watch', 'watch-views'], function(){
+gulp.task('dev', ['watch'], function(){
 	return nodemon({
-		script: 'dist/server.js'
+		script: 'dist/app/server.js'
 	}).on('restart', function(){
 		console.log('restarted');
 	});

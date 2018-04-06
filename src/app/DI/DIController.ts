@@ -1,5 +1,5 @@
 import UserController from "../Controllers/UserController";
-import AuthController from "../Controllers/AuthController";
+import AuthController from "../Controllers/Admin/AuthController";
 import User from "../Models/User";
 
 export default (app) => {

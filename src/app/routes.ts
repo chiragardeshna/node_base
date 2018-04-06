@@ -12,6 +12,11 @@ router.get('/', (req, res, next) => {
     res.json({message: "This is test message"});
 });
 
+router.get('/admin/auth', (req, res, next) => {
+    let controller = app.get("AuthController");
+    return controller.login();
+});
+
 router.get('/users/index', (req, res, next) => {
     let controller = app.get("UserController");
     return controller.index();
@@ -22,7 +27,7 @@ router.get('/users', (req, res, next) => {
     return controller.collection();
 });
 
-router.post('/users', [ UserRegistration ], (req, res, next) => {
+router.post('/users', [UserRegistration], (req, res, next) => {
     let controller = app.get("UserController");
     return controller.store();
 });
