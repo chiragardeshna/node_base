@@ -1,4 +1,4 @@
-import Container from "../../../src/Services/Container/Container";
+import Container from "../../../src/app/Services/Container/Container";
 import TestObject from "./TestObject";
 
 import 'mocha';

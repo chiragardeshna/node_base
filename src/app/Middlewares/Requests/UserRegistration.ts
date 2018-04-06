@@ -5,7 +5,8 @@ import Request from "../../Services/Request/Request";
 import BadRequestResponse from "../../Services/Response/BadRequestResponse";
 
 export default (req, res, next) => {
-    let data: IUser = new Request(req).get();
+    let request: Request = new Request(req, 3000);
+    let data: IUser = request.get();
     let validation = new Validator(data, UserValidator.rules());
     if (validation.fails()) return BadRequestResponse(res, validation);
     next();

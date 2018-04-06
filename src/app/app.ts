@@ -42,8 +42,6 @@ class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({extended: true}));
 
-        console.log(dirname(__dirname));
-
         this.express.use(express.static(dirname(__dirname)  + "/public/assets"));
         this.express.set("views", dirname(__dirname) + "/public/views");
         this.express.set("view engine", "pug");
@@ -62,7 +60,7 @@ class App {
         this.container.register("express", () => this.express);
         this.container.register("connection", () => this.connection);
         this.express.use(function (req, res, next) {
-            this.container.register("request", () => new Request(req));
+            this.container.register("request", () => new Request(req, 3000));
             this.container.register("response", () => res);
             this.container.register("next", () => next);
             this.container = DIBusinessLogic(this).container;

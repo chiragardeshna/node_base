@@ -1,4 +1,4 @@
-import Hash from "../../../src/Services/Hash/Hash";
+import Hash from "../../../src/app/Services/Hash/Hash";
 import 'mocha';
 import {expect} from 'chai';
 

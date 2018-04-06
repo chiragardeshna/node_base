@@ -1,5 +1,5 @@
 import {Response} from "express";
-import Request from "../Services/Request/Request";
+import Request from "../Services/Interfaces/Request/Request";
 
 class Controller {
 

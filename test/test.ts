@@ -1,4 +1,4 @@
-import {MongoConnector} from "../src/Services/Database/MongoConnector";
+import {MongoConnector} from "../src/app/Services/Database/MongoConnector";
 
 import 'mocha';
 import {expect} from 'chai';
