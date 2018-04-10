@@ -5,7 +5,6 @@ import config from "./Config/Database";
 
 import {MongoConnector} from "./Services/Database/MongoConnector";
 import {Mongoose} from "mongoose";
-import Container from "./Services/Container/Container";
 
 import * as session from "express-session";
 import sessionConfig from "./Config/Session";
@@ -20,18 +19,14 @@ class App {
 
     public express: express.Express;
 
-    public connection: Mongoose;
-
-    public container: Container;
+    public mongoose: Mongoose;
 
     constructor() {
 
         this.express = express();
 
-        this.container = new Container();
-
-        Promise.all([this.database()]).then(() => {
-            this.register();
+        this.database().then((mongoose) => {
+            this.mongoose = mongoose;
             this.middleware();
             this.routes();
         });
@@ -46,7 +41,7 @@ class App {
         this.express.set("views", dirname(__dirname) + "/public/views");
         this.express.set("view engine", "pug");
 
-        let store = new MongoStore({mongooseConnection: this.get("connection").connection});
+        let store = new MongoStore({mongooseConnection: this.mongoose.connection});
         this.express.use(session(
             Object.assign(sessionConfig, {store: store})
         ));
@@ -56,31 +51,15 @@ class App {
         this.express.use('/', router);
     }
 
-    private register() {
-        this.container.register("express", () => this.express);
-        this.container.register("connection", () => this.connection);
-        this.express.use(function (req, res, next) {
-            this.container.register("request", () => new Request(req, 3000));
-            this.container.register("response", () => res);
-            this.container.register("next", () => next);
-            this.container = DIBusinessLogic(this).container;
-            this.container = DIController(this).container;
-            next();
-        }.bind(this));
-    }
-
     private async database(): Promise<Mongoose> {
+        let mongoose = null
         try {
             let connector = new MongoConnector;
-            this.connection = await connector.connect(config["mongodb"]);
+            mongoose = await connector.connect(config["mongodb"]);
         } catch (e) {
             console.log(e);
         }
-        return this.connection;
-    }
-
-    public get(name: string): any {
-        return this.container.make(name);
+        return mongoose;
     }
 }
 

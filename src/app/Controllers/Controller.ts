@@ -1,6 +1,7 @@
-import {Response} from "express";
-import Request from "../Services/Interfaces/Request/Request";
+import {Request, Response} from "express";
+import {injectable} from "inversify";
 
+@injectable()
 class Controller {
 
     protected request: Request;

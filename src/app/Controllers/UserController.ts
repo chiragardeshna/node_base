@@ -1,3 +1,5 @@
+import {inject} from "inversify";
+import {TYPES} from "../types";
 import Controller from "./Controller";
 import {IUserModel} from "../Interfaces/Models/IUserModel";
 import {IUser} from "../Interfaces/Entities/IUser";
@@ -7,9 +9,11 @@ class UserController extends Controller {
 
     protected userRepo: IUserModel;
 
-    constructor(userRepo) {
+    constructor(
+        @inject(TYPES.MODELS_USER) userRepo
+    ) {
         super();
-        this.userRepo = userRepo();
+        this.userRepo = userRepo;
     }
 
     public index() {

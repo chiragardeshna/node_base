@@ -1,12 +1,17 @@
 import Controller from "../Controller";
 import IAuth from "../../Interfaces/BusinessLogic/Auth";
 import SuccessResponse from "../../Services/Response/SuccessResponse";
+import {inject, injectable} from "inversify";
+import {TYPES} from "../../types";
 
+@injectable()
 class AuthController extends Controller {
 
     protected auth: IAuth;
 
-    constructor(auth) {
+    constructor(
+        @inject(TYPES.BUSINESS_LOGIC_AUTH) auth
+    ) {
         super();
         this.auth = auth;
     }

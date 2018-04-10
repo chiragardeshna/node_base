@@ -2,14 +2,19 @@ import {IUserModel} from "../Interfaces/Models/IUserModel";
 import IAuth from "../Interfaces/BusinessLogic/Auth";
 import BCrypt from "../Services/Hash/Hash";
 import {IUser} from "../Interfaces/Entities/IUser";
+import { inject, injectable } from "inversify";
+import {TYPES} from "../types";
 
+@injectable()
 class Auth implements IAuth {
 
     protected userRepo: IUserModel;
 
     protected authenticatedUser: null;
 
-    constructor(userRepo) {
+    constructor(
+        @inject(TYPES.MODELS_USER) userRepo
+    ) {
         this.userRepo = userRepo;
     }
 
