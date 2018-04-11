@@ -3,7 +3,7 @@ import {Request, Response} from "express";
 
 let router = express.Router();
 
-router.get('/contact', (req, res, next) => {
+router.get('/', (req, res, next) => {
     res.json({message: "contact us page"});
 });
 

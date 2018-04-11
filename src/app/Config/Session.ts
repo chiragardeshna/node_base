@@ -1,5 +1,7 @@
 export default {
-    secret: "test",
-    resave: false,
-    saveUninitialized: true
+    session: {
+      secret: "test",
+      resave: false,
+      saveUninitialized: true
+    }
 };
