@@ -1,21 +1,21 @@
 import {Request, Response} from "express";
 
-class ContactController{
+class ContactController {
 
     protected request: Request;
 
     protected response: Response;
 
-    constructor(){
-        
+    constructor() {
+
     }
 
-    _boot(request, response){
+    _boot(request, response) {
         this.request = request;
         this.response = response;
     }
 
-    index(){
+    index() {
         this.response.send({page: "Contact Page"});
     }
 }

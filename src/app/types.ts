@@ -1,8 +1,0 @@
-const TYPES = {
-    CONTROLLER_AUTH: Symbol.for("CONTROLLER_AUTH"),
-    CONTROLLER_USER: Symbol.for("CONTROLLER_USER"),
-    BUSINESS_LOGIC_AUTH: Symbol.for("BUSINESS_LOGIC_AUTH"),
-    MODELS_USER: Symbol.for("MODELS_USER")
-};
-
-export { TYPES };

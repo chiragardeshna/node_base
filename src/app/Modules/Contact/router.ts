@@ -1,5 +1,4 @@
 import * as express from "express";
-import {Request, Response} from "express";
 
 let router = express.Router();
 
