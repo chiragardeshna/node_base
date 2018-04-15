@@ -2,11 +2,11 @@ import {MongoConnector} from "./MongoConnector";
 import {Mongoose} from "mongoose";
 import Application from "../Container/Application";
 
-export default class ServiceProvider {
+class ServiceProvider {
 
     connector: MongoConnector;
 
-    constructor(connector) {
+    constructor(connector: MongoConnector) {
         this.connector = connector;
     }
 
@@ -33,8 +33,10 @@ export default class ServiceProvider {
     }
 
     private static config(config) {
-        return (typeof config["db"] !== "undefined" && config["db"]["mongodb"] instanceof Array)
+        return (typeof config["db"] !== "undefined" && typeof config["db"]["mongodb"] !== "undefined")
             ? config["db"]["mongodb"]
             : {};
     }
 }
+
+export default new ServiceProvider(new MongoConnector());

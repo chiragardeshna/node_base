@@ -37,12 +37,13 @@ export default class Application {
         return this;
     }
 
-    public _boot() {
+    public async _boot() {
         let modules = this.config.modules;
         if (typeof modules === "undefined" || !(modules instanceof Array)) return;
 
-        modules.forEach((module) => {
-            new module().register(this);
-        });
+        let _this = this;
+        for (let module of modules) {
+            _this = await module.register(_this);
+        }
     }
 }

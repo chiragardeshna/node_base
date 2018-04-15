@@ -1,4 +1,3 @@
-import _ from "lodash/core";
 import * as express from "express";
 import "reflect-metadata";
 import {Container} from "inversify";
@@ -9,7 +8,7 @@ import dbConfig from "../config/database";
 import moduleConfig from "../config/module";
 import sessionConfig from "../config/session";
 
-let config = _.assign(dbConfig, moduleConfig, sessionConfig);
+let config = Object.assign(dbConfig, moduleConfig, sessionConfig);
 let container = new Container();
 let expressInstance = express();
 

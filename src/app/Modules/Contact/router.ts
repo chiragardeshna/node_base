@@ -1,9 +1,18 @@
 import * as express from "express";
+import ContactController from "./Controllers/ContactController";
+import Application from "../../../vendor/Nterprise/Container/Application";
 
-let router = express.Router();
+export default (app: Application) => {
 
-router.get('/', (req, res, next) => {
-    res.json({message: "contact us page"});
-});
+    let router = express.Router();
+    let container = app.getContainer();
 
-export default router;
+    router.get('/', (req, res, next) => {
+        let controller = container.get<ContactController>("CONTROLLER_CONTACT");
+        controller._boot(req, res);
+        return controller.index();
+    });
+
+    return router;
+}
+
