@@ -1,8 +1,9 @@
 import {Request, Response} from "express";
 import {inject, injectable} from "inversify";
+import Controller from "../../../../vendor/Nterprise/Http/Controller";
 
 @injectable()
-class ContactController {
+class ContactController extends Controller {
 
     protected request: Request;
 
@@ -11,12 +12,8 @@ class ContactController {
     protected repo;
 
     constructor(@inject("MODEL_CONTACT") repo) {
+        super();
         this.repo = repo;
-    }
-
-    _boot(request, response) {
-        this.request = request;
-        this.response = response;
     }
 
     index() {

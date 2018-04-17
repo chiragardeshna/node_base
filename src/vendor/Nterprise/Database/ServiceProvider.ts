@@ -1,8 +1,9 @@
 import {MongoConnector} from "./MongoConnector";
 import {Mongoose} from "mongoose";
 import Application from "../Container/Application";
+import {ServiceProvider as ContractServiceProvider} from "../Contracts/ServiceProvider";
 
-class ServiceProvider {
+class ServiceProvider implements ContractServiceProvider {
 
     connector: MongoConnector;
 

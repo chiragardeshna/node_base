@@ -12,8 +12,6 @@ export default (app: Application) => {
     // Models.
     container.bind("MODEL_CONTACT").toConstantValue(Contact);
 
-
-
     app.setContainer(container);
 
     return app;
