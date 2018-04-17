@@ -11,7 +11,7 @@ export default class AuthController extends Controller {
         this.auth = auth;
     }
 
-    login() {
-        // this.response.render();
+    public login() {
+        return this.response.render("layout");
     }
 }

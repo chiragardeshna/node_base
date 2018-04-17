@@ -7,7 +7,7 @@ export default (app: Application) => {
     let router = express.Router();
     let container = app.getContainer();
 
-    router.get('/auth', (req, res, next) => {
+    router.get('/', (req, res, next) => {
         let controller = container.get<AuthController>("CONTROLLER_AUTH")._boot(req, res);
         return controller.login();
     });

@@ -4,11 +4,12 @@ import {Container} from "inversify";
 import Application from "../vendor/Nterprise/Container/Application";
 
 // Load config files.
+import expressConfig from "../config/express";
 import dbConfig from "../config/database";
 import moduleConfig from "../config/module";
 import sessionConfig from "../config/session";
 
-let config = Object.assign(dbConfig, moduleConfig, sessionConfig);
+let config = Object.assign(expressConfig, dbConfig, moduleConfig, sessionConfig);
 let container = new Container();
 let expressInstance = express();
 

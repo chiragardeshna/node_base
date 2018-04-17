@@ -15,6 +15,10 @@
         "src/types/*"
       ]
     },
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "exclude": [
+      "src/app/Modules/Admin/Theme",
+      "src/app/Modules/Admin/**/View"
+    ]
   }
 }
