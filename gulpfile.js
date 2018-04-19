@@ -3,7 +3,6 @@ var ts = require('gulp-typescript');
 var path = require("path");
 var fs = require("fs");
 var nodemon = require('gulp-nodemon');
-var cache = require('gulp-cached');
 var watch = require('gulp-watch');
 
 var tsProject = ts.createProject("./tsconfig.json");
@@ -22,25 +21,25 @@ function copy(source, destination) {
 }
 
 function srcToDest(source, extFrom = null, extTo = null) {
-    var search = path.sep + "src" + path.sep + "app" + path.sep;
-    var replace = path.sep + "dist" + path.sep + "app" + path.sep;
+    var search = path.sep + "src" + path.sep;
+    var replace = path.sep + "dist" + path.sep;
     var filePath = source.replace(search, replace);
     if (extFrom === null && extTo === null) return filePath;
     return filePath.replace(extFrom, extTo);
 }
 
-function watcher(event, file) {
+function process(event, file) {
 
     var extension = path.extname(file);
     var tsFile = extension === ".ts";
     var destination = (tsFile) ? srcToDest(file, ".ts", ".js") : srcToDest(file);
 
     if (event === "change" || event === "add") {
-        (tsFile)
+        return (tsFile)
             ? compile(file, path.dirname(destination))
-            : copy(file, destination)
+            : copy(file, path.dirname(destination))
     } else if (event === "unlink") {
-        fs.unlinkSync(destination);
+        return (fs.existsSync(destination)) ? fs.unlinkSync(destination) : null;
     }
 }
 
@@ -49,61 +48,28 @@ gulp.task('compile', function () {
 });
 
 gulp.task('watch', ['compile'], function () {
-    var tsWatcher = watch('./src/**/*');
-    tsWatcher.on('change', function (file) {
-        var ext = path.extname(file);
 
+    var watcher = watch('./src/**/*');
 
-        console.log(ext);
-
-        console.log("File was changed \"" + file + "\"");
-        var destPath = srcToDest(file, ".ts", ".js");
-        return compile(file, path.dirname(destPath));
-    });
-    tsWatcher.on('unlink', function (file) {
-        console.log("File was deleted \"" + file + "\"");
-        var destPath = srcToDest(file, ".ts", ".js");
-        fs.unlinkSync(destPath);
-    });
-    tsWatcher.on('add', function (file) {
+    watcher.on('add', function (file) {
         console.log("File was added \"" + file + "\"");
-        var destPath = srcToDest(file, ".ts", ".js");
-        return compile(file, path.dirname(destPath));
+        return process("add", file);
     });
-    return tsWatcher;
+
+    watcher.on('change', function (file) {
+        console.log("File was changed \"" + file + "\"");
+        return process("change", file);
+    });
+
+    watcher.on('unlink', function (file) {
+        console.log("File was deleted \"" + file + "\"");
+        return process("unlink", file);
+    });
+
+    return watcher;
 });
 
-gulp.task('copy-views', function () {
-
-});
-
-/*gulp.task('copy-views', function () {
- return gulp.src('./src/app/!**!/!*.pug')
- .pipe(cache('un_modified_views'))
- .pipe(gulp.dest('./dist/app'));
- });*/
-
-/*gulp.task('copy-assets', function () {
- gulp.src('./src/app/!**!/!*.{css,jpg,png,js,scss,ttf,woff,eof,svg, pug}')
- .pipe(cache('un_modified_assets'))
- .pipe(gulp.dest('./dist/public'));
- });*/
-
-/*gulp.task('watch-views', function () {
- var viewWatcher = gulp.watch('./src/app/!**!/!*.pug', ['copy-views']);
-
- // on file deletion.
- viewWatcher.on('change', function (event) {
- console.log(event);
- if (event.type === "deleted") {
- console.log("File " + event.path + " is deleted");
- }
- });
-
- return viewWatcher;
- });*/
-
-gulp.task('dev', ['watch', 'watch-views'], function () {
+gulp.task('dev', ['watch'], function () {
     return nodemon({
         script: 'dist/app/server.js'
     }).on('restart', function () {
