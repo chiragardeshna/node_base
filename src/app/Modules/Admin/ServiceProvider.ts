@@ -4,7 +4,7 @@ import authIoc from "./Auth/ioc";
 import authRouter from "./Auth/router";
 
 import {ServiceProvider as ContractServiceProvider} from "../../../vendor/Nterprise/Contracts/ServiceProvider";
-import {static} from "express";
+import {static as expressStatic} from "express";
 
 class ServiceProvider implements ContractServiceProvider {
 
@@ -24,7 +24,7 @@ class ServiceProvider implements ContractServiceProvider {
         app.express.set("views", viewDirs);
 
         // Assets Dir Bindings.
-        app.express.use("admin", static(__dirname + "/Theme"));
+        app.express.use("admin", expressStatic(__dirname + "/Theme"));
 
         return app;
     }
