@@ -39,6 +39,7 @@
     "express-server": "^0.7.0",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.4",
+    "gulp-watch": "^5.0.0",
     "inversify": "^4.11.1",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.2",

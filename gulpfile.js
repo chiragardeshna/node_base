@@ -5,7 +5,7 @@ var fs = require("fs");
 var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
-var tsProject = ts.createProject("./tsconfig.json");
+//var tsProject = ts.createProject("./tsconfig.json");
 
 var destination = './dist';
 var extensions = ['ts'];
@@ -13,7 +13,7 @@ var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss'];
 
 function compile(source, destination) {
     return gulp.src(source)
-        .pipe(tsProject())
+        .pipe(ts.createProject("./tsconfig.json")())
         .pipe(gulp.dest(destination));
 }
 
