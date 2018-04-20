@@ -8,6 +8,8 @@ var watch = require('gulp-watch');
 var tsProject = ts.createProject("./tsconfig.json");
 
 var destination = './dist';
+var extensions = ['ts'];
+var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss'];
 
 function compile(source, destination) {
     return gulp.src(source)
@@ -47,9 +49,13 @@ gulp.task('compile', function () {
     return compile('./src/**/*.ts', destination);
 });
 
-gulp.task('watch', ['compile'], function () {
+gulp.task('copy', function () {
+    return copy('./src/**/*.{' + assetExtensions.join(',') + '}', destination);
+});
 
-    var watcher = watch('./src/**/*');
+gulp.task('watch', ['compile', 'copy'], function () {
+
+    var watcher = watch('./src/**/*.{' + extensions.concat(assetExtensions).join(',') + '}');
 
     watcher.on('add', function (file) {
         console.log("File was added \"" + file + "\"");
@@ -66,13 +72,11 @@ gulp.task('watch', ['compile'], function () {
         return process("unlink", file);
     });
 
-    return watcher;
-});
-
-gulp.task('dev', ['watch'], function () {
-    return nodemon({
+    nodemon({
         script: 'dist/app/server.js'
     }).on('restart', function () {
         console.log('restarted');
     });
+
+    return watcher;
 });
