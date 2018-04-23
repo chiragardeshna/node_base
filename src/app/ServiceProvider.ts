@@ -8,7 +8,7 @@ class ServiceProvider implements ContractServiceProvider {
         let config = app.getConfig()["express"];
 
         // View engine.
-        app.express.set('view engine', config["view_engine"]);
+        // app.express.set('view engine', config["view_engine"]);
 
         return app;
     }

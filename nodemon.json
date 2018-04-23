@@ -1,6 +1,6 @@
 {
   "verbose": true,
   "ignore": [
-    "src"
+    "src", "node_modules", "test"
   ]
 }

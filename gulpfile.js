@@ -5,11 +5,9 @@ var fs = require("fs");
 var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
-//var tsProject = ts.createProject("./tsconfig.json");
-
 var destination = './dist';
 var extensions = ['ts'];
-var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss'];
+var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss', 'cpug'];
 
 function compile(source, destination) {
     return gulp.src(source)
@@ -34,14 +32,14 @@ function process(event, file) {
 
     var extension = path.extname(file);
     var tsFile = extension === ".ts";
-    var destination = (tsFile) ? srcToDest(file, ".ts", ".js") : srcToDest(file);
+    var destinationFile = (tsFile) ? srcToDest(file, ".ts", ".js") : srcToDest(file);
 
     if (event === "change" || event === "add") {
         return (tsFile)
-            ? compile(file, path.dirname(destination))
-            : copy(file, path.dirname(destination))
+            ? compile(file, destination)
+            : copy(file, path.dirname(destinationFile))
     } else if (event === "unlink") {
-        return (fs.existsSync(destination)) ? fs.unlinkSync(destination) : null;
+        return (fs.existsSync(destinationFile)) ? fs.unlinkSync(destinationFile) : null;
     }
 }
 
