@@ -1,4 +1,3 @@
-import {renderFile} from "pug";
 import Application from "../../../vendor/Nterprise/Container/Application";
 // Auth Module.
 import authIoc from "./Auth/ioc";
