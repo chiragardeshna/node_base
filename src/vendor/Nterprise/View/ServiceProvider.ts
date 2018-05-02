@@ -32,7 +32,7 @@ class ServiceProvider implements ContractServiceProvider {
                             if (fs.existsSync(file)) {
                                 filename = file.replace(baseDir, '');
 
-                                // Make it relative by prepanding forward slash.
+                                // Prepend with forward slash to make it relative.
                                 filename = filename.replace("\\", "/");
 
                                 break;

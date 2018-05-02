@@ -10,6 +10,9 @@ var extensions = ['ts'];
 var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss', 'cpug'];
 
 function compile(source, destination) {
+
+    console.log(source, destination);
+
     return gulp.src(source)
         .pipe(ts.createProject("./tsconfig.json")())
         .pipe(gulp.dest(destination));

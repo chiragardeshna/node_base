@@ -6,7 +6,7 @@ class Auth {
 
     protected user;
 
-    protected authenticatedUser: null;
+    public authenticatedUser: null;
 
     constructor(user) {
         this.user = user;
@@ -14,7 +14,9 @@ class Auth {
 
     public async attempt(username: string, password: string): Promise<boolean> {
         let user = await this.user.findOne({email: username});
-        if (!user || !await compare(password, user.password)) return false;
+        console.log(user);
+        if (!user || password !== user.password) return false;
+        // if (!user || !await compare(password, user.password)) return false;
         this.authenticatedUser = user;
         return true;
     }
