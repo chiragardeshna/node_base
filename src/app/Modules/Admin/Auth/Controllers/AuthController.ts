@@ -12,7 +12,6 @@ export default class AuthController extends Controller {
     }
 
     public login() {
-
         return this.response.render("auth/_login_form");
     }
 
@@ -23,17 +22,25 @@ export default class AuthController extends Controller {
 
             if (!await this.auth.attempt(username, password)) throw "Invalid username or password.";
 
-            this.request.session["authenticated"] = this.auth.authenticatedUser;
-
-            return this.response.redirect('/admin/dashboard');
-
+            this.request.session.regenerate((error) => {
+                if (error) throw error;
+                this.request.session["authenticated"] = this.auth.authenticatedUser;
+                return this.response.redirect('/admin/dashboard');
+            });
         } catch (error) {
+            console.log(error);
             return this.response.redirect("/admin/auth");
         }
     }
 
     public logout() {
-        delete this.request.session["authenticated"];
+        try {
+            this.request.session.destroy((error) => {
+                if (error) throw error;
+            })
+        } catch (error) {
+            console.log(error);
+        }
         return this.response.redirect("/admin/auth");
     }
 }
