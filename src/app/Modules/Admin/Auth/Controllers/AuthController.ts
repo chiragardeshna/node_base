@@ -12,6 +12,7 @@ export default class AuthController extends Controller {
     }
 
     public login() {
+
         return this.response.render("auth/_login_form");
     }
 

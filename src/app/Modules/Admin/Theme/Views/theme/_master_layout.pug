@@ -225,9 +225,10 @@ html
                                         | Likes
                                 li.divider(role='seperator')
                                 li
-                                    a(href='javascript:void(0);')
-                                        i.material-icons input
-                                        | Sign Out
+                                    form(action="/admin/auth/logout" method="POST")
+                                        button(type="submit" class="btn btn-primary")
+                                            i.material-icons input
+                                            | Sign Out
                 // #User Info
                 // Menu
                 .menu
