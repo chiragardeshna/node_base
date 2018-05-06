@@ -1,4 +1,4 @@
-import {compare} from "bcrypt/bcrypt";
+import {compare} from "bcrypt";
 import {injectable} from "inversify";
 
 @injectable()
@@ -14,9 +14,8 @@ class Auth {
 
     public async attempt(username: string, password: string): Promise<boolean> {
         let user = await this.user.findOne({email: username});
-        console.log(user);
-        if (!user || password !== user.password) return false;
-        // if (!user || !await compare(password, user.password)) return false;
+        if (!user || !await compare(password, user.password)) return false;
+        delete user._doc.password;
         this.authenticatedUser = user;
         return true;
     }

@@ -8,7 +8,7 @@ export default {
             path: '/',
             httpOnly: true,
             secure: false,
-            maxAge: (5 * 60 * 1000), // 1 minute
+            maxAge: (60 * 60 * 1000), // 1 hour
         },
         store: {
             "default": "mongo",
