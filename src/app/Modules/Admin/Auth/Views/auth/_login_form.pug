@@ -15,6 +15,7 @@ block content
                         span.input-group-addon
                             i.material-icons person
                         .form-line
+                            input.form-control(type='hidden', name='_csrf', value=csrfToken)
                             input.form-control(type='text', name='username', placeholder='Username', required='', autofocus='')
                     .input-group
                         span.input-group-addon

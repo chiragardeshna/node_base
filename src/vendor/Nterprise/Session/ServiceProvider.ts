@@ -3,6 +3,7 @@ import {ServiceProvider as ContractServiceProvider} from "../Contracts/ServicePr
 import * as session from "express-session";
 import {Mongoose} from "mongoose";
 import * as connect from 'connect-mongo';
+import * as csrf from "csurf";
 
 class ServiceProvider implements ContractServiceProvider {
 
@@ -20,13 +21,20 @@ class ServiceProvider implements ContractServiceProvider {
             if (store === "mongo") {
 
                 let mongoose = container.get<Mongoose>("DB_CONNECTION");
-
                 let MongoStore = connect(session);
                 let mongoStore = new MongoStore(Object.assign(
                     {mongooseConnection: mongoose.connection}, storeOptions
                 ));
+
                 config = Object.assign(config, {store: mongoStore});
                 app.express.use(session(config));
+
+                // csrf
+                app.express.use(csrf({cookie: false}));
+                app.express.use((req, res, next) => {
+                    res.locals.csrfToken = req.csrfToken();
+                    next();
+                });
             }
         } catch (error) {
             console.log(error);
