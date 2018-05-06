@@ -5,6 +5,7 @@ var fs = require("fs");
 var nodemon = require('gulp-nodemon');
 var watch = require('gulp-watch');
 
+var base = __dirname + "/src";
 var destination = './dist';
 var extensions = ['ts'];
 var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss', 'cpug'];
@@ -13,7 +14,7 @@ function compile(source, destination) {
 
     console.log(source, destination);
 
-    return gulp.src(source)
+    return gulp.src(source, {base: base})
         .pipe(ts.createProject("./tsconfig.json")())
         .pipe(gulp.dest(destination));
 }
