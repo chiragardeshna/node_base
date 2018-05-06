@@ -37,10 +37,10 @@ export default class AuthController extends Controller {
         try {
             this.request.session.destroy((error) => {
                 if (error) throw error;
+                return this.response.redirect("/admin/auth");
             })
         } catch (error) {
             console.log(error);
         }
-        return this.response.redirect("/admin/auth");
     }
 }

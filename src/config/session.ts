@@ -4,10 +4,12 @@ export default {
         name: "Nterprise",
         resave: false,
         saveUninitialized: true,
-        path: '/',
-        httpOnly: true,
-        secure: false,
-        maxAge: (1 * 60 * 60),
+        cookie: {
+            path: '/',
+            httpOnly: true,
+            secure: false,
+            maxAge: (5 * 60 * 1000), // 1 minute
+        },
         store: {
             "default": "mongo",
             mongo: {
