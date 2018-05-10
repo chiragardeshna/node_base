@@ -201,8 +201,8 @@ html
                     .image
                         img(src='/admin-assets/images/user.png', width='48', height='48', alt='User')
                     .info-container
-                        .name(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') John Doe
-                        .email john.doe@example.com
+                        .name(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') #{authenticated.firstName} #{authenticated.lastName}
+                        .email #{authenticated.email}
                         .btn-group.user-helper-dropdown
                             i.material-icons(data-toggle='dropdown', aria-haspopup='true', aria-expanded='true') keyboard_arrow_down
                             ul.dropdown-menu.pull-right

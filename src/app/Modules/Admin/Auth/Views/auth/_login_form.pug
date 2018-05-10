@@ -9,27 +9,39 @@ block content
             small Admin BootStrap Based - Material Design
         .card
             .body
-                form#sign_in(method='POST' action="/admin/auth")
-                    .msg Sign in to start your session
-                    .input-group
-                        span.input-group-addon
-                            i.material-icons person
-                        .form-line
-                            input.form-control(type='hidden', name='_csrf', value=csrfToken)
-                            input.form-control(type='text', name='username', placeholder='Username', required='', autofocus='')
-                    .input-group
-                        span.input-group-addon
-                            i.material-icons lock
-                        .form-line
-                            input.form-control(type='password', name='password', placeholder='Password', required='')
-                    .row
-                        .col-xs-8.p-t-5
-                            input#rememberme.filled-in.chk-col-pink(type='checkbox', name='rememberme')
-                            label(for='rememberme') Remember Me
-                        .col-xs-4
-                            button.btn.btn-block.bg-pink.waves-effect(type='submit') SIGN IN
-                    .row.m-t-15.m-b--20
-                        .col-xs-6
-                            a(href='sign-up.html') Register Now!
-                        .col-xs-6.align-right
-                            a(href='forgot-password.html') Forgot Password?
+                div
+                    form#sign_in(method='POST' action="/admin/auth")
+                        .msg Sign in
+
+                        // Show errors.
+                        - var errorText = ""
+                        each error in errors
+                            - errorText += error.msg + ".\n"
+                        if errors.length > 0
+                            div(class="alert alert-danger") #{errorText}
+
+                        - var usernameClass = (hasError('username')) ? 'form-line focused error' : 'form-line';
+                        .input-group
+                            span.input-group-addon
+                                i.material-icons person
+                            .div(class=usernameClass)
+                                input.form-control(type='hidden', name='_csrf', value=csrfToken)
+                                input.form-control(type='text', name='username', placeholder='Username', required='', autofocus='')
+
+                        - var passwordClass = (hasError('password')) ? 'form-line focused error' : 'form-line';
+                        .input-group
+                            span.input-group-addon
+                                i.material-icons lock
+                            .div(class=passwordClass)
+                                input.form-control(type='password', name='password', placeholder='Password', required='')
+                        .row
+                            .col-xs-8.p-t-5
+                                input#rememberme.filled-in.chk-col-pink(type='checkbox', name='rememberme')
+                                label(for='rememberme') Remember Me
+                            .col-xs-4
+                                button.btn.btn-block.bg-pink.waves-effect(type='submit') SIGN IN
+                        .row.m-t-15.m-b--20
+                            .col-xs-6
+                                a(href='sign-up.html') Register Now!
+                            .col-xs-6.align-right
+                                a(href='forgot-password.html') Forgot Password?

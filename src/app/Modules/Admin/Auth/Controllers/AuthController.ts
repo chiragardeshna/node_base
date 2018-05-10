@@ -17,7 +17,6 @@ export default class AuthController extends Controller {
 
     public async attempt() {
         try {
-
             let [username, password] = [this.request.body["username"], this.request.body["password"]];
 
             if (!await this.auth.attempt(username, password)) throw "Invalid username or password.";
