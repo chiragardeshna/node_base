@@ -42,8 +42,12 @@ export default class Application {
         if (typeof modules === "undefined" || !(modules instanceof Array)) return;
 
         let _this = this;
-        for (let module of modules) {
-            _this = await module.register(_this);
+        try {
+            for (let module of modules) {
+                _this = await module.register(_this);
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 }

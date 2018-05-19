@@ -24,13 +24,7 @@ class ServiceProvider implements ContractServiceProvider {
     }
 
     private async database(config): Promise<Mongoose> {
-        let mongoose = null;
-        try {
-            mongoose = await this.connector.connect(config);
-        } catch (e) {
-            console.log(e);
-        }
-        return mongoose;
+        return await this.connector.connect(config);
     }
 
     private static config(config) {

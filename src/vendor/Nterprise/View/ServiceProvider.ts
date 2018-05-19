@@ -31,16 +31,12 @@ class ServiceProvider implements ContractServiceProvider {
                             let file = viewDirs[i] + path.sep + filename;
                             if (fs.existsSync(file)) {
                                 filename = file.replace(baseDir, '');
-
-                                // Prepend with forward slash to make it relative.
-                                filename = filename.replace("\\", "/");
-
+                                filename = filename.replace("\\", "/"); // Prepend with forward slash to make it relative.
                                 break;
                             }
                         }
 
                         options.basedir = baseDir;
-
                         return load.resolve(filename, source, options);
                     }
                 }
