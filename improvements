@@ -1,2 +1,8 @@
 1) Service Provider Registration make it easy,
         Make it easy to register with express like views, assets, routes etc.
+
+2) Convert when html is pasted in dir to pug file via gulp.
+
+3) Module setup takes way more time. Generate it with command line or builder something.
+
+4) Link function for routes, it is cumbersome to manually change routes every time change done in router.

@@ -15,6 +15,7 @@ class ServiceProvider implements ContractServiceProvider {
         // middleware.
         app.express.use((req, res, next) => {
             res.locals.errors = req.flash("errors") || [];
+            res.locals.successMessage = req.flash("success") || null;
             res.locals.hasError = (name: string) => {
                 let errors = res.locals.errors;
                 return find(errors, {param: name}) || null;

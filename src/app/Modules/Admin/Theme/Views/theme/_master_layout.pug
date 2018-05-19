@@ -19,10 +19,14 @@ html
         link(href='/admin-assets/plugins/animate-css/animate.css', rel='stylesheet')
         // Morris Chart Css
         link(href='/admin-assets/plugins/morrisjs/morris.css', rel='stylesheet')
+        // Jquery DataTable
+        link(href='/admin-assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css', rel='stylesheet')
         // Custom Css
         link(href='/admin-assets/css/style.css', rel='stylesheet')
         // AdminBSB Themes. You can choose a theme from css/themes instead of get all themes
         link(href='/admin-assets/css/themes/all-themes.css', rel='stylesheet')
+        // Custom
+        link(href='/admin-assets/css/custom.css', rel='stylesheet')
         // Page Loader
         .page-loader-wrapper
             .loader
@@ -240,215 +244,9 @@ html
                                 i.material-icons home
                                 span Home
                         li
-                            a(href='pages/typography.html')
-                                i.material-icons text_fields
-                                span Typography
-                        li
-                            a(href='pages/helper-classes.html')
-                                i.material-icons layers
-                                span Helper Classes
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons widgets
-                                span Widgets
-                            ul.ml-menu
-                                li
-                                    a.menu-toggle(href='javascript:void(0);')
-                                        span Cards
-                                    ul.ml-menu
-                                        li
-                                            a(href='pages/widgets/cards/basic.html') Basic
-                                        li
-                                            a(href='pages/widgets/cards/colored.html') Colored
-                                        li
-                                            a(href='pages/widgets/cards/no-header.html') No Header
-                                li
-                                    a.menu-toggle(href='javascript:void(0);')
-                                        span Infobox
-                                    ul.ml-menu
-                                        li
-                                            a(href='pages/widgets/infobox/infobox-1.html') Infobox-1
-                                        li
-                                            a(href='pages/widgets/infobox/infobox-2.html') Infobox-2
-                                        li
-                                            a(href='pages/widgets/infobox/infobox-3.html') Infobox-3
-                                        li
-                                            a(href='pages/widgets/infobox/infobox-4.html') Infobox-4
-                                        li
-                                            a(href='pages/widgets/infobox/infobox-5.html') Infobox-5
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons swap_calls
-                                span User Interface (UI)
-                            ul.ml-menu
-                                li
-                                    a(href='pages/ui/alerts.html') Alerts
-                                li
-                                    a(href='pages/ui/animations.html') Animations
-                                li
-                                    a(href='pages/ui/badges.html') Badges
-                                li
-                                    a(href='pages/ui/breadcrumbs.html') Breadcrumbs
-                                li
-                                    a(href='pages/ui/buttons.html') Buttons
-                                li
-                                    a(href='pages/ui/collapse.html') Collapse
-                                li
-                                    a(href='pages/ui/colors.html') Colors
-                                li
-                                    a(href='pages/ui/dialogs.html') Dialogs
-                                li
-                                    a(href='pages/ui/icons.html') Icons
-                                li
-                                    a(href='pages/ui/labels.html') Labels
-                                li
-                                    a(href='pages/ui/list-group.html') List Group
-                                li
-                                    a(href='pages/ui/media-object.html') Media Object
-                                li
-                                    a(href='pages/ui/modals.html') Modals
-                                li
-                                    a(href='pages/ui/notifications.html') Notifications
-                                li
-                                    a(href='pages/ui/pagination.html') Pagination
-                                li
-                                    a(href='pages/ui/preloaders.html') Preloaders
-                                li
-                                    a(href='pages/ui/progressbars.html') Progress Bars
-                                li
-                                    a(href='pages/ui/range-sliders.html') Range Sliders
-                                li
-                                    a(href='pages/ui/sortable-nestable.html') Sortable & Nestable
-                                li
-                                    a(href='pages/ui/tabs.html') Tabs
-                                li
-                                    a(href='pages/ui/thumbnails.html') Thumbnails
-                                li
-                                    a(href='pages/ui/tooltips-popovers.html') Tooltips & Popovers
-                                li
-                                    a(href='pages/ui/waves.html') Waves
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons assignment
-                                span Forms
-                            ul.ml-menu
-                                li
-                                    a(href='pages/forms/basic-form-elements.html') Basic Form Elements
-                                li
-                                    a(href='pages/forms/advanced-form-elements.html') Advanced Form Elements
-                                li
-                                    a(href='pages/forms/form-examples.html') Form Examples
-                                li
-                                    a(href='pages/forms/form-validation.html') Form Validation
-                                li
-                                    a(href='pages/forms/form-wizard.html') Form Wizard
-                                li
-                                    a(href='pages/forms/editors.html') Editors
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons view_list
-                                span Tables
-                            ul.ml-menu
-                                li
-                                    a(href='pages/tables/normal-tables.html') Normal Tables
-                                li
-                                    a(href='pages/tables/jquery-datatable.html') Jquery Datatables
-                                li
-                                    a(href='pages/tables/editable-table.html') Editable Tables
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons perm_media
-                                span Medias
-                            ul.ml-menu
-                                li
-                                    a(href='pages/medias/image-gallery.html') Image Gallery
-                                li
-                                    a(href='pages/medias/carousel.html') Carousel
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons pie_chart
-                                span Charts
-                            ul.ml-menu
-                                li
-                                    a(href='pages/charts/morris.html') Morris
-                                li
-                                    a(href='pages/charts/flot.html') Flot
-                                li
-                                    a(href='pages/charts/chartjs.html') ChartJS
-                                li
-                                    a(href='pages/charts/sparkline.html') Sparkline
-                                li
-                                    a(href='pages/charts/jquery-knob.html') Jquery Knob
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons content_copy
-                                span Example Pages
-                            ul.ml-menu
-                                li
-                                    a(href='pages/examples/sign-in.html') Sign In
-                                li
-                                    a(href='pages/examples/sign-up.html') Sign Up
-                                li
-                                    a(href='pages/examples/forgot-password.html') Forgot Password
-                                li
-                                    a(href='pages/examples/blank.html') Blank Page
-                                li
-                                    a(href='pages/examples/404.html') 404 - Not Found
-                                li
-                                    a(href='pages/examples/500.html') 500 - Server Error
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons map
-                                span Maps
-                            ul.ml-menu
-                                li
-                                    a(href='pages/maps/google.html') Google Map
-                                li
-                                    a(href='pages/maps/yandex.html') YandexMap
-                                li
-                                    a(href='pages/maps/jvectormap.html') jVectorMap
-                        li
-                            a.menu-toggle(href='javascript:void(0);')
-                                i.material-icons trending_down
-                                span Multi Level Menu
-                            ul.ml-menu
-                                li
-                                    a(href='javascript:void(0);')
-                                        span Menu Item
-                                li
-                                    a(href='javascript:void(0);')
-                                        span Menu Item - 2
-                                li
-                                    a.menu-toggle(href='javascript:void(0);')
-                                        span Level - 2
-                                    ul.ml-menu
-                                        li
-                                            a(href='javascript:void(0);')
-                                                span Menu Item
-                                        li
-                                            a.menu-toggle(href='javascript:void(0);')
-                                                span Level - 3
-                                            ul.ml-menu
-                                                li
-                                                    a(href='javascript:void(0);')
-                                                        span Level - 4
-                        li
-                            a(href='pages/changelogs.html')
-                                i.material-icons update
-                                span Changelogs
-                        li.header LABELS
-                        li
-                            a(href='javascript:void(0);')
-                                i.material-icons.col-red donut_large
-                                span Important
-                        li
-                            a(href='javascript:void(0);')
-                                i.material-icons.col-amber donut_large
-                                span Warning
-                        li
-                            a(href='javascript:void(0);')
-                                i.material-icons.col-light-blue donut_large
-                                span Information
+                            a(href='/admin/roles')
+                                i.material-icons accessibility
+                                span Role
                 // #Menu
                 // Footer
                 .legal
@@ -577,7 +375,11 @@ html
                                             span.lever
             // #END# Right Sidebar
 
-            block content
+            section.content.content-block
+                div.container-fluid
+                    block content
+                        if successMessage.length > 0
+                            div(class="alert alert-success") #{successMessage}
 
             block scripts
                 // Jquery Core Js
