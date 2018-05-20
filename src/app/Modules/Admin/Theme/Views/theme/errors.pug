@@ -1,0 +1,11 @@
+- var errorText = ""
+each error in errors
+    - errorText += error.msg + "<br/>"
+if errors.length > 0
+    div.alert.alert-danger
+        div.row
+            div.col-lg-1
+                i.material-icons.error-icon error_outline
+            div.col-lg-11
+                i !{errorText}
+

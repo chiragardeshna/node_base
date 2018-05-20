@@ -1,0 +1,32 @@
+extends theme/_master_layout
+
+block append content
+    .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            ol.breadcrumb.breadcrumb-bg-teal
+                li
+                    a(href="javascript:void(0);") Dashboard
+                li
+                    a(href="javascript:void(0);") Role
+                li.active Create New
+    br
+    .row.clearfix
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .card
+                .header
+                    h2 Role
+                .body
+
+                    include theme/errors
+
+                    form(action="/admin/roles" method="POST")
+                        input(type="hidden" name="_csrf" value=csrfToken)
+                        .form-group.form-float
+                            .form-line
+                                input#name.form-control(type='text' name="name" value=input('name'))
+                                label.form-label Name
+                        .form-group.form-float
+                            .form-line
+                                input#description.form-control(type='text' name="description" value=input('description'))
+                                label.form-label Description
+                        button.btn.btn-primary.m-t-15.waves-effect(type='submit') SAVE
