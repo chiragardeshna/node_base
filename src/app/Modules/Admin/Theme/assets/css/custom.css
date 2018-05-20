@@ -2,10 +2,18 @@
     margin: 77px 10px 0 315px !important;
 }
 
-.alert .error-icon {
-    font-size: 40px;
+.custom-alert div {
+    margin-bottom: 0 !important;
 }
 
-.alert div {
-    margin-bottom: 0 !important;
+.custom-alert-icon {
+    width: 5.33333333% !important;
+}
+
+.custom-alert-icon i {
+    font-size: 30px !important;
+}
+
+.custom-alert-text {
+    padding: 5px !important;
 }

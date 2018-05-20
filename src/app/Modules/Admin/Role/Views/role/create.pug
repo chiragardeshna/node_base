@@ -16,9 +16,6 @@ block append content
                 .header
                     h2 Role
                 .body
-
-                    include theme/errors
-
                     form(action="/admin/roles" method="POST")
                         input(type="hidden" name="_csrf" value=csrfToken)
                         .form-group.form-float

@@ -378,8 +378,10 @@ html
             section.content.content-block
                 div.container-fluid
                     block content
-                        if successMessage.length > 0
-                            div(class="alert alert-success") #{successMessage}
+
+                        include theme/errors
+
+                        include theme/success
 
             block scripts
                 // Jquery Core Js
