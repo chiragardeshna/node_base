@@ -4,8 +4,10 @@ export default abstract class FormField {
     protected template;
     protected label;
     protected value;
-    protected error;
+    protected error: { className: string, message: string };
     protected attributes;
+    protected tab = '    ';
+    protected newLine = '\n';
 
     public setName(name) {
         if (typeof name !== "string") throw "Name must be string.";
@@ -37,8 +39,8 @@ export default abstract class FormField {
 
     public defaultTemplate() {
         return `.form-group.form-float
-    .form-line{{errorClass}}
-        {{field}}`;
+${this.tab}.form-line{{errorClass}}
+${this.tab.repeat(2)}{{field}}`;
     }
 
     public setAttributes(attributes) {
@@ -75,5 +77,5 @@ export default abstract class FormField {
         return attributeString;
     }
 
-    public abstract render();
+    public abstract render(): string;
 }

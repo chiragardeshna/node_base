@@ -23,8 +23,6 @@ describe('new TextField().render()', () => {
         input#username.form-control(type="text" name="username" value="ardeshnachirag@gmail.com" )
         label.form-label User Name`;
 
-        console.log(textField.render());
-
         expect(textField.render()).to.equal(expectedField);
     })
 });
@@ -41,8 +39,6 @@ describe('new TextField().render()', () => {
     .form-line.error.focused
         input#username.form-control(type="text" name="username" value="ardeshnachirag@gmail.com" )
         label.form-label User Name`;
-
-        console.log(textField.render());
 
         expect(textField.render()).to.equal(expectedField);
     })
