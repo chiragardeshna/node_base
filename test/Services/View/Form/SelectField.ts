@@ -30,6 +30,31 @@ describe('new SelectField().render()', () => {
 });
 
 describe('new SelectField().render()', () => {
+    it('should render multi select field.', () => {
+        let selectField = new SelectField()
+            .setName('role')
+            .setOptions([
+                {label: "Admin", value: "admin"},
+                {label: "Editor", value: "editor"},
+                {label: "User", value: "user"},
+            ])
+            .setAttributes({multiple: true})
+            .setValue(['user', 'admin']);
+
+        let expectedField = `.form-group.form-float
+    .form-line
+        select#role.form-control(name="role" multiple="true" )
+            option(value="admin" selected="selected") Admin
+            option(value="editor") Editor
+            option(value="user" selected="selected") User`;
+
+        console.log(selectField.render());
+
+        expect(selectField.render()).to.equal(expectedField);
+    })
+});
+
+describe('new SelectField().render()', () => {
     it('should have error class if error specified.', () => {
         let selectField = new SelectField()
             .setName('role')
@@ -119,6 +144,48 @@ describe('new SelectField().optionList()', () => {
             'option(value="user") User'
         ];
 
-        expect(isEqual(new SelectField().optionList(options), expectedOptionsList)).to.equal(true);
+        expect(isEqual(new SelectField().optionList(options, ''), expectedOptionsList)).to.equal(true);
+    })
+});
+
+describe('new SelectField().optionList()', () => {
+    it('should give options list with selected option. ', () => {
+
+        let options = [
+            {label: "Admin", value: "admin"},
+            {label: "Editor", value: "editor"},
+            {label: "User", value: "user"},
+        ];
+
+        let values = "user";
+
+        let expectedOptionsList = [
+            'option(value="admin") Admin',
+            'option(value="editor") Editor',
+            'option(value="user" selected="selected") User'
+        ];
+
+        expect(isEqual(new SelectField().optionList(options, values), expectedOptionsList)).to.equal(true);
+    })
+});
+
+describe('new SelectField().optionList()', () => {
+    it('should give options list with multiple selected option. ', () => {
+
+        let options = [
+            {label: "Admin", value: "admin"},
+            {label: "Editor", value: "editor"},
+            {label: "User", value: "user"},
+        ];
+
+        let values = ["user", "admin"];
+
+        let expectedOptionsList = [
+            'option(value="admin" selected="selected") Admin',
+            'option(value="editor") Editor',
+            'option(value="user" selected="selected") User'
+        ];
+
+        expect(isEqual(new SelectField().optionList(options, values), expectedOptionsList)).to.equal(true);
     })
 });
