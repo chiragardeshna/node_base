@@ -2,8 +2,8 @@ export default abstract class FormField {
 
     protected name;
     protected template;
-    protected label;
-    protected value;
+    protected label = '';
+    protected value = '';
     protected error: { className: string, message: string };
     protected attributes;
     protected tab = '    ';

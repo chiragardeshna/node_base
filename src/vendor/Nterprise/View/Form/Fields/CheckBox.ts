@@ -39,7 +39,10 @@ export default class CheckBox extends FormField {
     public field() {
         let [id, classes, otherAttributes] = [this.id(), this.classes(), this.otherAttributes()];
         let checked = (this.option == this.value) ? 'checked="checked"' : '';
-        return `input#${id}.${classes}(type="checkbox" name="${this.name}" value="${this.option}" ${checked} ${otherAttributes})
-${this.tab.repeat(2)}label.form-label(for="${id}") ${this.label}`;
+
+        let template = `input#${id}.${classes}(type="checkbox" name="${this.name}" value="${this.option || ''}" ${checked} ${otherAttributes})`;
+        if (this.label) template += `${this.newLine}${this.tab.repeat(2)}label.form-label(for="${id}") ${this.label}`;
+
+        return template;
     }
 }
