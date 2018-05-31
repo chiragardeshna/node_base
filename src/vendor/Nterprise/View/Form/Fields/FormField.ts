@@ -1,15 +1,14 @@
-export default abstract class FormField {
+import { Field } from "./Renderer";
+
+export default abstract class FormField implements Field {
 
     protected name;
-    protected template;
     protected label = '';
-    protected value = '';
+    protected value: any = '';
     protected error: { className: string, message: string };
     protected attributes;
-    protected tab = '    ';
-    protected newLine = '\n';
 
-    public setName(name) {
+    public setName(name): Field {
         if (typeof name !== "string") throw "Name must be string.";
         this.name = name;
         return this;
@@ -31,16 +30,8 @@ export default abstract class FormField {
         return this;
     }
 
-    public setTemplate(template) {
-        if (typeof template !== "string") throw "Template must be string.";
-        this.template = template;
-        return this;
-    }
-
-    public defaultTemplate() {
-        return `.form-group.form-float
-${this.tab}.form-line{{errorClass}}
-${this.tab.repeat(2)}{{field}}`;
+    public getError() {
+        return this.error;
     }
 
     public setAttributes(attributes) {
@@ -77,5 +68,5 @@ ${this.tab.repeat(2)}{{field}}`;
         return attributeString;
     }
 
-    public abstract render(): string;
+    public abstract output(): string;
 }

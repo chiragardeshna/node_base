@@ -1,6 +1,8 @@
 import FormField from "./FormField";
+import {Select as ISelect} from "./Renderer";
+import {PUG_SPACE, NEW_LINE} from "../../Constants";
 
-export default class SelectField extends FormField {
+export default class SelectField extends FormField implements ISelect{
 
     protected options: { label: string, value: string | number | null }[];
 
@@ -15,26 +17,19 @@ export default class SelectField extends FormField {
         return this;
     }
 
-    public render() {
+    public output() {
         if (!this.name) throw "Name can not be empty.";
-        let field = this.field();
-        let errorClass = (!this.error) ? '' : this.classNamesFromString(this.error["className"] || '');
-        if (errorClass.length > 0) errorClass = "." + errorClass;
-        let template = this.template || this.defaultTemplate();
-        return template.replace('{{field}}', field).replace('{{errorClass}}', errorClass);
-    }
 
-    public field() {
         let [id, classes, otherAttributes] = [this.id(), this.classes(), this.otherAttributes()];
 
         let multiSelect = (this.attributes && (this.attributes['multiple'] || false));
-        if (multiSelect && !this.value instanceof Array) throw "Value must be array.";
+        if (!(this.value instanceof Array) && multiSelect) throw "Value must be array.";
 
         let options = this.optionList(this.options, this.value);
-        let optionTemplate = this.newLine + this.tab.repeat(3) + options.join(this.newLine + this.tab.repeat(3));
+        let optionTemplate = NEW_LINE + PUG_SPACE.repeat(3) + options.join(NEW_LINE + PUG_SPACE.repeat(3));
 
         let template = `select#${id}.${classes}(name="${this.name}" ${otherAttributes})${optionTemplate}`;
-        if (this.label) template += `${this.tab.repeat(2)}label.form-label ${this.label}`;
+        if (this.label) template += `${PUG_SPACE.repeat(2)}label.form-label ${this.label}`;
 
         return template;
     }

@@ -1,17 +1,24 @@
 import 'mocha';
 import {expect} from 'chai';
 
-import TextField from "../../../../src/vendor/Nterprise/View/Form/Fields/TextField";
+import TextField from "../../../../../src/vendor/Nterprise/View/Form/Fields/TextField";
 
-describe('new TextField().render()', () => {
+import Template from "../../../../../src/vendor/Nterprise/View/Form/Fields/Template";
+import {PUG_SPACE} from "../../../../../src/vendor/Nterprise/View/Constants"
+
+let template = new Template(`.form-group.form-float
+${PUG_SPACE}.form-line{{errorClass}}
+${PUG_SPACE.repeat(2)}{{field}}`);
+
+describe('new TextField().output()', () => {
     it('should throw if name not provided.', () => {
         expect(() => {
-            new TextField().setLabel('User Name').setValue('ardeshnachirag@gmail.com').render();
+            new TextField().setLabel('User Name').setValue('ardeshnachirag@gmail.com').output();
         }).to.throw("Name can not be empty.");
     })
 });
 
-describe('new TextField().render()', () => {
+describe('new TextField().output()', () => {
     it('should render text field.', () => {
         let textField = new TextField()
             .setName('username')
@@ -23,11 +30,11 @@ describe('new TextField().render()', () => {
         input#username.form-control(type="text" name="username" value="ardeshnachirag@gmail.com" )
         label.form-label User Name`;
 
-        expect(textField.render()).to.equal(expectedField);
+        expect(template.render(textField)).to.equal(expectedField);
     })
 });
 
-describe('new TextField().render()', () => {
+describe('new TextField().output()', () => {
     it('should have error class if error specified.', () => {
         let textField = new TextField()
             .setName('username')
@@ -40,11 +47,11 @@ describe('new TextField().render()', () => {
         input#username.form-control(type="text" name="username" value="ardeshnachirag@gmail.com" )
         label.form-label User Name`;
 
-        expect(textField.render()).to.equal(expectedField);
+        expect(template.render(textField)).to.equal(expectedField);
     })
 });
 
-describe('new TextField().render()', () => {
+describe('new TextField().output()', () => {
     it('should render text field with attributes.', () => {
         let textField = new TextField()
             .setName('username')
@@ -57,7 +64,7 @@ describe('new TextField().render()', () => {
         input#username.form-control.test2(type="text" name="username" value="ardeshnachirag@gmail.com" style="margin:100px" disabled="true" )
         label.form-label User Name`;
 
-        expect(textField.render()).to.equal(expectedField);
+        expect(template.render(textField)).to.equal(expectedField);
     })
 });
 

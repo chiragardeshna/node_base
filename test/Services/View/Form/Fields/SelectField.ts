@@ -2,9 +2,15 @@ import 'mocha';
 import {expect} from 'chai';
 import {isEqual} from "lodash";
 
-import SelectField from "../../../../src/vendor/Nterprise/View/Form/Fields/SelectField";
+import SelectField from "../../../../../src/vendor/Nterprise/View/Form/Fields/SelectField";
+import Template from "../../../../../src/vendor/Nterprise/View/Form/Fields/Template";
+import {PUG_SPACE} from "../../../../../src/vendor/Nterprise/View/Constants"
 
-describe('new SelectField().render()', () => {
+let template = new Template(`.form-group.form-float
+${PUG_SPACE}.form-line{{errorClass}}
+${PUG_SPACE.repeat(2)}{{field}}`);
+
+describe('new SelectField().output()', () => {
     it('should render select field.', () => {
         let selectField = new SelectField()
             .setName('role')
@@ -23,13 +29,13 @@ describe('new SelectField().render()', () => {
             option(value="editor") Editor
             option(value="user" selected="selected") User`;
 
-        console.log(selectField.render());
+        console.log(template.render(selectField));
 
-        expect(selectField.render()).to.equal(expectedField);
+        expect(template.render(selectField)).to.equal(expectedField);
     })
 });
 
-describe('new SelectField().render()', () => {
+describe('new SelectField().output()', () => {
     it('should render multi select field.', () => {
         let selectField = new SelectField()
             .setName('role')
@@ -48,13 +54,13 @@ describe('new SelectField().render()', () => {
             option(value="editor") Editor
             option(value="user" selected="selected") User`;
 
-        console.log(selectField.render());
+        console.log(template.render(selectField));
 
-        expect(selectField.render()).to.equal(expectedField);
+        expect(template.render(selectField)).to.equal(expectedField);
     })
 });
 
-describe('new SelectField().render()', () => {
+describe('new SelectField().output()', () => {
     it('should have error class if error specified.', () => {
         let selectField = new SelectField()
             .setName('role')
@@ -73,11 +79,11 @@ describe('new SelectField().render()', () => {
             option(value="editor") Editor
             option(value="user" selected="selected") User`;
 
-        expect(selectField.render()).to.equal(expectedField);
+        expect(template.render(selectField)).to.equal(expectedField);
     })
 });
 
-describe('new SelectField().render()', () => {
+describe('new SelectField().output()', () => {
     it('should render select field with attributes.', () => {
         let selectField = new SelectField()
             .setName('role')
@@ -97,11 +103,11 @@ describe('new SelectField().render()', () => {
             option(value="editor") Editor
             option(value="user" selected="selected") User`;
 
-        expect(selectField.render()).to.equal(expectedField);
+        expect(template.render(selectField)).to.equal(expectedField);
     })
 });
 
-describe('new SelectField().render()', () => {
+describe('new SelectField().output()', () => {
     it('should throw if option specified is not array. ', () => {
         let throwable = () => {
             new SelectField()
@@ -109,20 +115,20 @@ describe('new SelectField().render()', () => {
                 .setError({className: "error focused"})
                 .setOptions("invalid options")
                 .setValue('user')
-                .render()
+                .output()
         };
 
         expect(throwable).to.throw("Options must be array of name value pair.");
     })
 });
 
-describe('new SelectField().render()', () => {
+describe('new SelectField().output()', () => {
     it('should throw if name not specified. ', () => {
         let throwable = () => {
             new SelectField()
                 .setError({className: "error focused"})
                 .setOptions([])
-                .render()
+                .output()
         };
 
         expect(throwable).to.throw("Name can not be empty.");
