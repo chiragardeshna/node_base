@@ -2,8 +2,8 @@ import { Field } from "./Renderer";
 
 export default abstract class FormField implements Field {
 
-    protected name;
-    protected label = '';
+    protected name: string;
+    protected label: string = '';
     protected value: any = '';
     protected error: { className: string, message: string };
     protected attributes;

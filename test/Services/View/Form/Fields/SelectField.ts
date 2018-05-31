@@ -5,6 +5,7 @@ import {isEqual} from "lodash";
 import SelectField from "../../../../../src/vendor/Nterprise/View/Form/Fields/SelectField";
 import Template from "../../../../../src/vendor/Nterprise/View/Form/Fields/Template";
 import {PUG_SPACE} from "../../../../../src/vendor/Nterprise/View/Constants"
+import {Select} from '../../../../../src/vendor/Nterprise/View/Form/Fields/Renderer';
 
 let template = new Template(`.form-group.form-float
 ${PUG_SPACE}.form-line{{errorClass}}
@@ -12,13 +13,13 @@ ${PUG_SPACE.repeat(2)}{{field}}`);
 
 describe('new SelectField().output()', () => {
     it('should render select field.', () => {
-        let selectField = new SelectField()
-            .setName('role')
+        let selectField: Select = new SelectField()
             .setOptions([
                 {label: "Admin", value: "admin"},
                 {label: "Editor", value: "editor"},
                 {label: "User", value: "user"},
             ])
+            .setName('role')
             .setValue('user')
         ;
 
@@ -38,12 +39,12 @@ describe('new SelectField().output()', () => {
 describe('new SelectField().output()', () => {
     it('should render multi select field.', () => {
         let selectField = new SelectField()
-            .setName('role')
             .setOptions([
                 {label: "Admin", value: "admin"},
                 {label: "Editor", value: "editor"},
                 {label: "User", value: "user"},
             ])
+            .setName('role')
             .setAttributes({multiple: true})
             .setValue(['user', 'admin']);
 
@@ -86,14 +87,14 @@ describe('new SelectField().output()', () => {
 describe('new SelectField().output()', () => {
     it('should render select field with attributes.', () => {
         let selectField = new SelectField()
-            .setName('role')
-            .setError({className: "error focused"})
-            .setAttributes({style: "margin: 0px", className: "testClass testClass2", id: "id"})
             .setOptions([
                 {label: "Admin", value: "admin"},
                 {label: "Editor", value: "editor"},
                 {label: "User", value: "user"},
             ])
+            .setName('role')
+            .setError({className: "error focused"})
+            .setAttributes({style: "margin: 0px", className: "testClass testClass2", id: "id"})
             .setValue('user');
 
         let expectedField = `.form-group.form-float
@@ -111,9 +112,9 @@ describe('new SelectField().output()', () => {
     it('should throw if option specified is not array. ', () => {
         let throwable = () => {
             new SelectField()
+                .setOptions("invalid options")
                 .setName('role')
                 .setError({className: "error focused"})
-                .setOptions("invalid options")
                 .setValue('user')
                 .output()
         };
@@ -126,8 +127,8 @@ describe('new SelectField().output()', () => {
     it('should throw if name not specified. ', () => {
         let throwable = () => {
             new SelectField()
-                .setError({className: "error focused"})
                 .setOptions([])
+                .setError({className: "error focused"})
                 .output()
         };
 

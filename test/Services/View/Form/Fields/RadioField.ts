@@ -14,8 +14,8 @@ describe('new Radio().output()', () => {
 describe('new Radio().output()', () => {
     it('should render radio field.', () => {
         let radioField = new Radio()
-            .setName('gender')
             .setOption('male')
+            .setName('gender')
             .setLabel('Male');
 
         let expectedField = `input#gender_male.with-gap.radio-col-teal(type="radio" name="gender" value="male"  )
@@ -28,8 +28,8 @@ describe('new Radio().output()', () => {
 describe('new Radio().output()', () => {
     it('should render radio field checked.', () => {
         let radioField = new Radio()
-            .setName('gender')
             .setOption('male')
+            .setName('gender')
             .setLabel('Male')
             .setValue('male')
         ;
@@ -44,8 +44,8 @@ describe('new Radio().output()', () => {
 describe('new Radio().output()', () => {
     it('should render checkbox field with attributes.', () => {
         let radioField = new Radio()
-            .setName('gender')
             .setOption('male')
+            .setName('gender')
             .setLabel('Male')
             .setAttributes({style: "margin:100px", disabled: true, id: "username", className: "form-control test2"});
 
