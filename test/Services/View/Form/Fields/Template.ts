@@ -36,4 +36,18 @@ describe("new Template()", () => {
             }).to.throw("Name can not be empty.");
         });
     });
+
+    describe(".render()", () => {
+        it("should html template when flag is true.", () => {
+
+            let textField = new TextField().setName('username').setLabel('Username');
+
+            let renderedField = new Template(template).render(textField, true);
+
+            let expectedField = `<div class="form-group form-float"><div class="form-line"><input class="form-control" id="username" type="text" name="username" value=""/><label class="form-label">Username</label></div></div>`;
+
+            expect(renderedField).to.equal(expectedField);
+        });
+    });
+
 });

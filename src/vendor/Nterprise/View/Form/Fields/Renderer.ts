@@ -21,5 +21,5 @@ export interface Radio extends Field {
 }
 
 export interface Renderer {
-    render(formField: Field): string;
+    render(formField: Field, html: boolean): string;
 }
