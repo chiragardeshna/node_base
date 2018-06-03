@@ -67,7 +67,7 @@ export default (config) => {
                               label: string = "", attributes: Object = {}) {
                 let field = new Select().setName(name).setOptions(options).setValue(value).setLabel(label).setAttributes(attributes);
                 if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
-                if (this.input(name)) field.setValue(this.input(name));
+                if (this.input(name)) field.setValue(!(this.input(name) instanceof Array) ? [this.input(name)] : this.input(name));
                 return template.render(field, true);
             },
 
