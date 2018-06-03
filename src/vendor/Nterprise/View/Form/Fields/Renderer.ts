@@ -4,22 +4,23 @@ export interface Field {
     setValue(value: any)
     setError(error: any)
     getError(): Object;
+    getLabel(): string;
     setAttributes(attribute: Object)
     output(): string;
 }
 
 export interface Select extends Field {
-    setOptions(options: string|number[]): Select
+    setOptions(options: string | number[]): Select
 }
 
 export interface CheckBox extends Field {
-    setOption(option: string|number): CheckBox
+    setOption(option: string | number): CheckBox
 }
 
 export interface Radio extends Field {
-    setOption(option: string|number): Radio
+    setOption(option: string | number): Radio
 }
 
 export interface Renderer {
-    render(formField: Field, html: boolean): string;
+    static render(template: string): string;
 }

@@ -1,4 +1,5 @@
 import { Field } from "./Renderer";
+import {NEW_LINE} from "../../Constants";
 
 export default abstract class FormField implements Field {
 
@@ -32,6 +33,11 @@ export default abstract class FormField implements Field {
 
     public getError() {
         return this.error;
+    }
+
+    public getLabel(label) {
+        if (!this.label) return '';
+        return `${NEW_LINE}label.form-label(for="${this.id()}") ${this.label}`;
     }
 
     public setAttributes(attributes) {

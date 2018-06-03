@@ -1,7 +1,7 @@
 import {Renderer, Field} from "./Renderer";
 import {render} from "pug";
 
-export default class Template implements Renderer {
+export default class Template {
 
     protected template;
 
@@ -9,8 +9,7 @@ export default class Template implements Renderer {
         this.template = template;
     }
 
-    public render(formField: Field, html: boolean = false) {
-
+    public field(formField: Field) {
         let error = formField.getError();
         let errorClass = (!error)
             ? ''
@@ -20,8 +19,10 @@ export default class Template implements Renderer {
 
         let field = formField.output();
 
-        let template = this.template.replace('{{field}}', field).replace('{{errorClass}}', errorClass);
+        return this.template.replace('{{field}}', field).replace('{{errorClass}}', errorClass);
+    }
 
-        return (html) ? render(template) : template;
+    public static render(template: string) {
+        return render(template);
     }
 }

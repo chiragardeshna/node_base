@@ -35,9 +35,6 @@ export default class Radio extends FormField implements IRadio {
         let [id, classes, otherAttributes] = [this.id(), this.classes(), this.otherAttributes()];
         let checked = (this.value) ? 'checked="checked"' : '';
 
-        let template = `input#${id}.${classes}(type="radio" name="${this.name}" value="${this.option || ''}" ${checked} ${otherAttributes})`;
-        if (this.label) template += `${NEW_LINE}label.form-label(for="${id}") ${this.label}`;
-
-        return template;
+        return `input#${id}.${classes}(type="radio" name="${this.name}" value="${this.option || ''}" ${checked} ${otherAttributes})`;
     }
 }

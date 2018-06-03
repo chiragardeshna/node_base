@@ -28,10 +28,7 @@ export default class SelectField extends FormField implements ISelect{
         let options = this.optionList(this.options, this.value);
         let optionTemplate = NEW_LINE + PUG_SPACE.repeat(3) + options.join(NEW_LINE + PUG_SPACE.repeat(3));
 
-        let template = `select#${id}.${classes}(name="${this.name}" ${otherAttributes})${optionTemplate}`;
-        if (this.label) template += `${NEW_LINE}${PUG_SPACE.repeat(2)}label.form-label ${this.label}`;
-
-        return template;
+        return `select#${id}.${classes}(name="${this.name}" ${otherAttributes})${optionTemplate}`;
     }
 
     public optionList(options, value): string[] {
