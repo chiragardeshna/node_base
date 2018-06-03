@@ -29,7 +29,7 @@ export default class SelectField extends FormField implements ISelect{
         let optionTemplate = NEW_LINE + PUG_SPACE.repeat(3) + options.join(NEW_LINE + PUG_SPACE.repeat(3));
 
         let template = `select#${id}.${classes}(name="${this.name}" ${otherAttributes})${optionTemplate}`;
-        if (this.label) template += `${PUG_SPACE.repeat(2)}label.form-label ${this.label}`;
+        if (this.label) template += `${NEW_LINE}${PUG_SPACE.repeat(2)}label.form-label ${this.label}`;
 
         return template;
     }
@@ -42,7 +42,8 @@ export default class SelectField extends FormField implements ISelect{
 
         for (let option of options) {
             let selected = (values.indexOf(option.value) !== -1) ? ' selected="selected"' : '';
-            optionList.push(`option(value="${option.value}"${selected}) ${option.label}`);
+            let disabled = (option.disabled || false) ? ' disabled="disabled"' : '';
+            optionList.push(`option(value="${option.value}"${selected}${disabled}) ${option.label}`);
         }
 
         return optionList;

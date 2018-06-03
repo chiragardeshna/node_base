@@ -2,6 +2,7 @@ import {find} from "lodash";
 import Template from "./Fields/Template";
 import TextField from "./Fields/TextField";
 import TextArea from "./Fields/TextArea";
+import Select from "./Fields/SelectField";
 import CSRFField from "./Fields/CSRF";
 
 export default (config) => {
@@ -38,7 +39,8 @@ export default (config) => {
 
             csrfField: function () {
                 // TODO: Remove hardcoded csrf token name and give it as configurable option.
-                return template.render(new CSRFField().setName('_csrf').setValue(res.locals.csrfToken), true);
+                let field = new CSRFField().setName('_csrf').setValue(res.locals.csrfToken);
+                return new Template('{{field}}').render(field, true);
             },
 
             text: function (name: string, value: any = "", label: string = "", attributes: Object = {}) {
@@ -53,12 +55,20 @@ export default (config) => {
 
             textArea: function (name: string, value: any = "", label: string = "", attributes: Object = {}) {
                 let field = new TextArea().setName(name).setValue(value).setLabel(label).setAttributes(attributes);
-
                 if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+                if (this.input(name)) field.setValue(this.input(name));
+                return template.render(field, true);
+            },
 
+            select: function (name: string,
+                              options: string | number[], value: any = "",
+                              label: string = "", attributes: Object = {}) {
+                let field = new Select().setName(name).setOptions(options).setValue(value).setLabel(label).setAttributes(attributes);
+                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
                 if (this.input(name)) field.setValue(this.input(name));
                 return template.render(field, true);
             }
+
         };
 
         next();
