@@ -1,7 +1,7 @@
 - var errorText = ""
-each error in errors
+each error in form.errors
     - errorText += error.msg + "<br/>"
-if errors.length > 0
+if form.errors.length > 0
     div.alert.alert-danger.custom-alert
         div.row
             div.col-lg-1.custom-alert-icon
