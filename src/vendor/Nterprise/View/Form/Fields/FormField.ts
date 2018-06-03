@@ -5,7 +5,7 @@ export default abstract class FormField implements Field {
     protected name: string;
     protected label: string = '';
     protected value: any = '';
-    protected error: { className: string, message: string };
+    protected error: { 'class': string, message: string };
     protected attributes;
 
     public setName(name): Field {
@@ -47,7 +47,7 @@ export default abstract class FormField implements Field {
 
     public classes() {
         let attributes = this.attributes || {};
-        let classes = this.classNamesFromString(attributes["className"] || "");
+        let classes = this.classNamesFromString(attributes["class"] || "");
         if (!(classes.length > 0)) classes = "form-control";
         return classes;
     }
@@ -61,7 +61,7 @@ export default abstract class FormField implements Field {
 
         for (let key in this.attributes) {
             if (!this.attributes.hasOwnProperty(key)) continue;
-            if (["id", 'className'].indexOf(key) !== -1) continue;
+            if (["id", 'class'].indexOf(key) !== -1) continue;
             attributeString += key + '="' + this.attributes[key] + '" ';
         }
 

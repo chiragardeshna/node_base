@@ -9,8 +9,16 @@ import dbConfig from "../config/database";
 import moduleConfig from "../config/module";
 import sessionConfig from "../config/session";
 import securityConfig from "../config/security";
+import formConfig from "../config/form";
 
-let config = Object.assign(expressConfig, dbConfig, moduleConfig, sessionConfig, securityConfig);
+let config = Object.assign(
+    expressConfig,
+    dbConfig,
+    moduleConfig,
+    sessionConfig,
+    securityConfig,
+    formConfig
+);
 let container = new Container();
 let expressInstance = express();
 

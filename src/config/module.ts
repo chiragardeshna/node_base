@@ -2,6 +2,7 @@ import AppServiceProvider from "../app/ServiceProvider";
 import DataBaseServiceProvider from "../vendor/Nterprise/Database/ServiceProvider";
 import SessionServiceProvider from "../vendor/Nterprise/Session/ServiceProvider";
 import CSRFServiceProvider from "../vendor/Nterprise/Security/Csrf/ServiceProvider";
+import FormServiceProvider from "../vendor/Nterprise/View/Form/ServiceProvider";
 import ViewServiceProvider from "../vendor/Nterprise/View/ServiceProvider";
 import ContactModule from "../app/Modules/Contact/ServiceProvider";
 import AdminServiceProvider from "../app/Modules/Admin/ServiceProvider";
@@ -12,6 +13,7 @@ export default {
         DataBaseServiceProvider,
         SessionServiceProvider,
         CSRFServiceProvider,
+        FormServiceProvider,
         AdminServiceProvider,
         ContactModule,
         ViewServiceProvider

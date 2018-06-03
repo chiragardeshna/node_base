@@ -14,7 +14,7 @@ export default class Template implements Renderer {
         let error = formField.getError();
         let errorClass = (!error)
             ? ''
-            : (error["className"] || '').replace(new RegExp(" ", 'g'), ".");
+            : (error["class"] || '').replace(new RegExp(" ", 'g'), ".");
 
         if (errorClass.length > 0) errorClass = "." + errorClass;
 

@@ -40,7 +40,7 @@ describe('new TextArea().output()', () => {
         let areaField = new TextArea()
             .setName('description')
             .setValue('Description goes here...')
-            .setError({className: "error focused"});
+            .setError({'class': "error focused"});
 
         let expectedField = `.form-group.form-float
     .form-line.error.focused
@@ -59,7 +59,7 @@ describe('new TextArea().output()', () => {
                 style: "margin:100px",
                 disabled: true,
                 id: "desc",
-                className: "form-control test2",
+                'class': "form-control test2",
                 rows: "10",
                 cols: "10"
             });

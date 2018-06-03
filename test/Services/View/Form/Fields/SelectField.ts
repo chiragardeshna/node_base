@@ -65,7 +65,7 @@ describe('new SelectField().output()', () => {
     it('should have error class if error specified.', () => {
         let selectField = new SelectField()
             .setName('role')
-            .setError({className: "error focused"})
+            .setError({'class': "error focused"})
             .setOptions([
                 {label: "Admin", value: "admin"},
                 {label: "Editor", value: "editor"},
@@ -93,8 +93,8 @@ describe('new SelectField().output()', () => {
                 {label: "User", value: "user"},
             ])
             .setName('role')
-            .setError({className: "error focused"})
-            .setAttributes({style: "margin: 0px", className: "testClass testClass2", id: "id"})
+            .setError({'class': "error focused"})
+            .setAttributes({style: "margin: 0px", 'class': "testClass testClass2", id: "id"})
             .setValue('user');
 
         let expectedField = `.form-group.form-float
@@ -114,7 +114,7 @@ describe('new SelectField().output()', () => {
             new SelectField()
                 .setOptions("invalid options")
                 .setName('role')
-                .setError({className: "error focused"})
+                .setError({'class': "error focused"})
                 .setValue('user')
                 .output()
         };
@@ -128,7 +128,7 @@ describe('new SelectField().output()', () => {
         let throwable = () => {
             new SelectField()
                 .setOptions([])
-                .setError({className: "error focused"})
+                .setError({'class': "error focused"})
                 .output()
         };
 

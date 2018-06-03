@@ -18,7 +18,7 @@ export default class CheckBox extends FormField implements ICheckBox {
 
     public classes() {
         let attributes = this.attributes || {};
-        let classes = this.classNamesFromString(attributes["className"] || "");
+        let classes = this.classNamesFromString(attributes["class"] || "");
         if (!(classes.length > 0)) classes = "with-gap.radio-col-teal";
         return classes;
     }

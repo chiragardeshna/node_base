@@ -47,7 +47,7 @@ describe('new Radio().output()', () => {
             .setOption('male')
             .setName('gender')
             .setLabel('Male')
-            .setAttributes({style: "margin:100px", disabled: true, id: "username", className: "form-control test2"});
+            .setAttributes({style: "margin:100px", disabled: true, id: "username", 'class': "form-control test2"});
 
         let expectedField = `input#username.form-control.test2(type="radio" name="gender" value="male"  style="margin:100px" disabled="true" )
         label.form-label(for="username") Male`;

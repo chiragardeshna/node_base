@@ -39,7 +39,7 @@ describe('new TextField().output()', () => {
         let textField = new TextField()
             .setName('username')
             .setLabel('User Name')
-            .setError({className: "error focused"})
+            .setError({'class': "error focused"})
             .setValue('ardeshnachirag@gmail.com');
 
         let expectedField = `.form-group.form-float
@@ -57,7 +57,7 @@ describe('new TextField().output()', () => {
             .setName('username')
             .setLabel('User Name')
             .setValue('ardeshnachirag@gmail.com')
-            .setAttributes({style: "margin:100px", disabled: true, id: "username", className: "form-control test2"});
+            .setAttributes({style: "margin:100px", disabled: true, id: "username", 'class': "form-control test2"});
 
         let expectedField = `.form-group.form-float
     .form-line
