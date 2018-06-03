@@ -3,6 +3,8 @@ import Template from "./Fields/Template";
 import TextField from "./Fields/TextField";
 import TextArea from "./Fields/TextArea";
 import Select from "./Fields/SelectField";
+import Radio from "./Fields/Radio";
+import Checkbox from "./Fields/CheckBox";
 import CSRFField from "./Fields/CSRF";
 
 export default (config) => {
@@ -67,6 +69,20 @@ export default (config) => {
                 if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
                 if (this.input(name)) field.setValue(this.input(name));
                 return template.render(field, true);
+            },
+
+            radio: function (name: string, option: any, value: any = '', label: string = '', attributes: Object = {}) {
+                let field = new Radio().setName(name).setOption(option).setValue(value).setLabel(label).setAttributes(attributes);
+                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+                if (this.input(name) !== null) field.setValue(this.input(name) == option);
+                return new Template('{{field}}').render(field, true);
+            },
+
+            checkbox: function (name: string, option: any, value: any = '', label: string = '', attributes: Object = {}) {
+                let field = new Checkbox().setName(name).setOption(option).setValue(value).setLabel(label).setAttributes(attributes);
+                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+                if (this.lastInput.length > 0) field.setValue(this.input(name) == option);
+                return new Template('{{field}}').render(field, true);
             }
 
         };
