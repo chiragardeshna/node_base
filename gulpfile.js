@@ -8,7 +8,7 @@ var watch = require('gulp-watch');
 var base = __dirname + "/src";
 var destination = './dist';
 var extensions = ['ts'];
-var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss', 'cpug'];
+var assetExtensions = ['pug', 'css', 'jpg', 'png', 'js', 'scss', 'cpug', 'woff2', 'woff', 'ttf'];
 
 function compile(source, destination) {
 

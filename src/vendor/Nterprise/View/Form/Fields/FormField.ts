@@ -1,12 +1,11 @@
-import { Field } from "./Renderer";
-import {NEW_LINE} from "../../Constants";
+import {Field} from "./Renderer";
+import {render} from "pug";
 
 export default abstract class FormField implements Field {
 
     protected name: string;
-    protected label: string = '';
     protected value: any = '';
-    protected error: { 'class': string, message: string };
+    protected defaultClass = 'form-control';
     protected attributes;
 
     public setName(name): Field {
@@ -15,29 +14,10 @@ export default abstract class FormField implements Field {
         return this;
     }
 
-    public setLabel(label) {
-        this.label = label;
-        return this;
-    }
-
     public setValue(value) {
         if (typeof value !== "string") throw "Value must be string.";
         this.value = value;
         return this;
-    }
-
-    public setError(error) {
-        this.error = error;
-        return this;
-    }
-
-    public getError() {
-        return this.error;
-    }
-
-    public getLabel(label) {
-        if (!this.label) return '';
-        return `${NEW_LINE}label.form-label(for="${this.id()}") ${this.label}`;
     }
 
     public setAttributes(attributes) {
@@ -54,7 +34,7 @@ export default abstract class FormField implements Field {
     public classes() {
         let attributes = this.attributes || {};
         let classes = this.classNamesFromString(attributes["class"] || "");
-        if (!(classes.length > 0)) classes = "form-control";
+        if (!(classes.length > 0)) classes = this.defaultClass;
         return classes;
     }
 
@@ -75,4 +55,8 @@ export default abstract class FormField implements Field {
     }
 
     public abstract output(): string;
+
+    public render() {
+        return render(this.output());
+    }
 }

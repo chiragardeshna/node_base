@@ -8,9 +8,7 @@ class ServiceProvider implements ContractServiceProvider {
 
     public async register(app: Application) {
 
-        let config = app.getConfig()['field'];
-
-        app.express.use(FormHelper(config));
+        app.express.use(FormHelper({}));
 
         return app;
     }

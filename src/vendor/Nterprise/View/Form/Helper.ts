@@ -1,6 +1,8 @@
 import {find} from "lodash";
+import {render} from "pug";
 import Template from "./Fields/Template";
 import TextField from "./Fields/TextField";
+import Password from "./Fields/Password";
 import TextArea from "./Fields/TextArea";
 import Select from "./Fields/SelectField";
 import Radio from "./Fields/Radio";
@@ -8,18 +10,6 @@ import Checkbox from "./Fields/CheckBox";
 import CSRFField from "./Fields/CSRF";
 
 export default (config) => {
-
-    let defaultTemplate = new Template(config.template || '');
-
-    let textTemplate = (!config.text) ? defaultTemplate : new Template(config.text);
-
-    let textAreaTemplate = (!config.textArea) ? defaultTemplate : new Template(config.textArea.template);
-
-    let selectTemplate = (!config.select) ? defaultTemplate : new Template(config.select.template);
-
-    let radioTemplate = (!config.radio) ? defaultTemplate : new Template(config.radio.template);
-
-    let checkboxTemplate = (!config.checkbox) ? defaultTemplate : new Template(config.checkbox.template);
 
     return (req, res, next) => {
 
@@ -52,59 +42,55 @@ export default (config) => {
             csrfField: function () {
                 // TODO: Remove hardcoded csrf token name and give it as configurable option.
                 let field = new CSRFField().setName('_csrf').setValue(res.locals.csrfToken);
-                return Template.render(field.output());
+                return field.render();
             },
 
-            text: function (name: string, value: any = "", label: string = "", attributes: Object = {}) {
-                let field = new TextField().setName(name).setValue(value).setLabel(label).setAttributes(attributes);
-
-                // TODO: Remove hardcoded error class and give it as configurable option.
-                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
-
+            text: function (name: string, value: any = "", attributes: Object = {}) {
+                let field = new TextField().setName(name).setValue(value).setAttributes(attributes);
                 if (this.input(name)) field.setValue(this.input(name));
-
-                return Template.render(textTemplate.field(field), true);
+                return field.render();
             },
 
-            textArea: function (name: string, value: any = "", label: string = "", attributes: Object = {}) {
-                let field = new TextArea().setName(name).setValue(value).setLabel(label).setAttributes(attributes);
-                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+            password: function (name: string, attributes: Object = {}) {
+                return new Password().setName(name).setAttributes(attributes).render();
+            },
+
+            textArea: function (name: string, value: any = "", attributes: Object = {}) {
+                let field = new TextArea().setName(name).setValue(value).setAttributes(attributes);
                 if (this.input(name)) field.setValue(this.input(name));
-                return Template.render(textAreaTemplate.field(field), true);
+                return field.render();
             },
 
             select: function (name: string,
                               options: string | number[], value: any = "",
-                              label: string = "", attributes: Object = {}) {
-                let field = new Select().setName(name).setOptions(options).setValue(value).setLabel(label).setAttributes(attributes);
-                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+                              attributes: Object = {}) {
+                let field = new Select().setName(name).setOptions(options).setValue(value).setAttributes(attributes);
                 if (this.input(name)) field.setValue(!(this.input(name) instanceof Array) ? [this.input(name)] : this.input(name));
-                return Template.render(selectTemplate.field(field), true);
+                return field.render();
             },
 
-            radio: function (name: string, option: any, value: any = '', label: string = '', attributes: Object = {}) {
-                let field = new Radio().setName(name).setOption(option).setValue(value).setLabel(label).setAttributes(attributes);
-                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+            radio: function (name: string, option: any, value: any = '', attributes: Object = {}) {
+                let field = new Radio().setName(name).setOption(option).setValue(value).setAttributes(attributes);
                 if (this.input(name) !== null) field.setValue(this.input(name) == option);
-                return Template.render(radioTemplate.field(field));
+                return field.render();
             },
 
-            checkbox: function (name: string, option: any, value: any = '', label: string = '', attributes: Object = {}) {
-                let field = new Checkbox().setName(name).setOption(option).setValue(value).setLabel(label).setAttributes(attributes);
-                if (this.hasError(name)) field.setError({'class': 'error', message: this.getError(name)});
+            checkbox: function (name: string, option: any, value: any = '', attributes: Object = {}) {
+                let field = new Checkbox().setName(name).setOption(option).setValue(value).setAttributes(attributes);
                 if (this.lastInput.length > 0) field.setValue(this.input(name) == option);
-                return Template.render(checkboxTemplate.field(field), true);
+                return field.render();
             },
 
-            error: function (name: string) {
+            error: function (name: string, template: string = '') {
                 if (!this.hasError(name)) return '';
+                if (!template) template = 'span.error {{error}}';
                 let error = this.getError(name);
-                return Template.render(config.error.replace('{{error}}', error));
+                return render(template.replace('{{error}}', error));
             },
 
-            label: function (name: string, id: string) {
-                let label = config.label.replace('{{label}}', name).replace('{{id}}', id);
-                return Template.render(label);
+            label: function (id: string, name: string, template: string = '') {
+                if (!template) template = 'label.form-label(for="{{id}}") {{label}}';
+                return render(template.replace('{{label}}', name).replace('{{id}}', id));
             }
         };
 

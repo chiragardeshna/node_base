@@ -17,3 +17,16 @@
 .custom-alert-text {
     padding: 5px !important;
 }
+
+span.error {
+    font-size: 13px;
+    display: block;
+    margin-top: 3px;
+    font-weight: normal;
+    color: #F44336;
+    font-style: italic;
+}
+
+.login-page {
+    max-width: 404px !important;
+}

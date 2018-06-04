@@ -17,24 +17,25 @@ block content
 
                         // Show errors.
                         - var errorText = ""
-                        each error in errors
+                        each error in form.errors
                             - errorText += error.msg + ".\n"
-                        if errors.length > 0
+                        if form.errors.length > 0
                             div(class="alert alert-danger") #{errorText}
 
-                        - var usernameClass = (hasError('username')) ? 'form-line focused error' : 'form-line';
+                        - var usernameClass = (form.hasError('username')) ? 'form-line focused error' : 'form-line';
                         .input-group
                             span.input-group-addon
                                 i.material-icons person
                             .div(class=usernameClass)
-                                input.form-control(type='text', name='username', placeholder='Username', autofocus='')
+                                | !{form.text('username', '', {placeholder: 'Username', autofocus: true})}
 
-                        - var passwordClass = (hasError('password')) ? 'form-line focused error' : 'form-line';
+                        - var passwordClass = (form.hasError('password')) ? 'form-line focused error' : 'form-line';
                         .input-group
                             span.input-group-addon
                                 i.material-icons lock
                             .div(class=passwordClass)
-                                input.form-control(type='password', name='password', placeholder='Password')
+                                | !{form.password('password', {placeholder: 'Password'})}
+
                         .row
                             .col-xs-8.p-t-5
                                 input#rememberme.filled-in.chk-col-pink(type='checkbox', name='rememberme')

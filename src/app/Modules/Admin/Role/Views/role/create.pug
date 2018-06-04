@@ -17,13 +17,20 @@ block append content
                     h2 Role
                 .body
                     form(action="/admin/roles" method="POST")
-                        input(type="hidden" name="_csrf" value=csrfToken)
-                        .form-group.form-float
-                            .form-line
-                                input#name.form-control(type='text' name="name" value=input('name'))
-                                label.form-label Name
-                        .form-group.form-float
-                            .form-line
-                                input#description.form-control(type='text' name="description" value=input('description'))
-                                label.form-label Description
+                        | !{form.csrfField()}
+
+                        // Name
+                        | !{form.label('name', 'Name')}
+                        div.form-group
+                            div.form-line
+                                | !{form.text('name')}
+                            | !{form.error('name')}
+
+                        // Description
+                        | !{form.label('description', 'Description')}
+                        div.form-group
+                            div.form-line
+                                | !{form.textArea('description')}
+                            | !{form.error('description')}
+
                         button.btn.btn-primary.m-t-15.waves-effect(type='submit') SAVE
