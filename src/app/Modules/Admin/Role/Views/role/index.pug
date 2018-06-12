@@ -1,151 +1,39 @@
 extends theme/_master_layout
 
 block append content
+    .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            ol.breadcrumb.breadcrumb-bg-teal
+                li
+                    a(href="javascript:void(0);") Dashboard
+                li.active Roles
+    br
     .row.clearfix
         .col-lg-12.col-md-12.col-sm-12.col-xs-12
             .card
                 .header
-                    h2
-                        | BASIC EXAMPLE
-                    ul.header-dropdown.m-r--5
-                        li.dropdown
-                            a.dropdown-toggle(href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true")
-                                i.material-icons more_vert
-                            ul.dropdown-menu.pull-right
-                                li
-                                    a.waves-effect.waves-block(href="javascript:void(0);") Action
-                                li
-                                    a.waves-effect.waves-block(href="javascript:void(0);") Another action
-                                li
-                                    a.waves-effect.waves-block(href="javascript:void(0);") Something else here
+                    h2 Roles
                 .body
-                    .table-responsive
-                        #DataTables_Table_0_wrapper.dataTables_wrapper.form-inline.dt-bootstrap
-                            .row
-                                .col-sm-6
-                                    #DataTables_Table_0_length.dataTables_length
-                                        label
-                                            | Show
-                                            select.form-control.input-sm(name="DataTables_Table_0_length" aria-controls="DataTables_Table_0")
-                                                option(value="10") 10
-                                                option(value="25") 25
-                                                option(value="50") 50
-                                                option(value="100") 100
-                                            |  entries
-                                .col-sm-6
-                                    #DataTables_Table_0_filter.dataTables_filter
-                                        label
-                                            | Search:
-                                            input.form-control.input-sm(type="search" placeholder="" aria-controls="DataTables_Table_0")
-                            .row
-                                .col-sm-12
-                                    table#DataTables_Table_0.table.table-bordered.table-striped.table-hover.js-basic-example.dataTable(role="grid" aria-describedby="DataTables_Table_0_info")
-                                        thead
-                                            tr(role="row")
-                                                th.sorting_asc(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 141px;") Name
-                                                th.sorting(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 233px;") Position
-                                                th.sorting(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 102px;") Office
-                                                th.sorting(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 46px;") Age
-                                                th.sorting(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 96px;") Start date
-                                                th.sorting(tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 78px;") Salary
-                                        tfoot
-                                            tr
-                                                th(rowspan="1" colspan="1") Name
-                                                th(rowspan="1" colspan="1") Position
-                                                th(rowspan="1" colspan="1") Office
-                                                th(rowspan="1" colspan="1") Age
-                                                th(rowspan="1" colspan="1") Start date
-                                                th(rowspan="1" colspan="1") Salary
-                                        tbody
-                                            tr.odd(role="row")
-                                                td.sorting_1 Airi Satou
-                                                td Accountant
-                                                td Tokyo
-                                                td 33
-                                                td 2008/11/28
-                                                td $162,700
-                                            tr.even(role="row")
-                                                td.sorting_1 Angelica Ramos
-                                                td Chief Executive Officer (CEO)
-                                                td London
-                                                td 47
-                                                td 2009/10/09
-                                                td $1,200,000
-                                            tr.odd(role="row")
-                                                td.sorting_1 Ashton Cox
-                                                td Junior Technical Author
-                                                td San Francisco
-                                                td 66
-                                                td 2009/01/12
-                                                td $86,000
-                                            tr.even(role="row")
-                                                td.sorting_1 Bradley Greer
-                                                td Software Engineer
-                                                td London
-                                                td 41
-                                                td 2012/10/13
-                                                td $132,000
-                                            tr.odd(role="row")
-                                                td.sorting_1 Brenden Wagner
-                                                td Software Engineer
-                                                td San Francisco
-                                                td 28
-                                                td 2011/06/07
-                                                td $206,850
-                                            tr.even(role="row")
-                                                td.sorting_1 Brielle Williamson
-                                                td Integration Specialist
-                                                td New York
-                                                td 61
-                                                td 2012/12/02
-                                                td $372,000
-                                            tr.odd(role="row")
-                                                td.sorting_1 Bruno Nash
-                                                td Software Engineer
-                                                td London
-                                                td 38
-                                                td 2011/05/03
-                                                td $163,500
-                                            tr.even(role="row")
-                                                td.sorting_1 Caesar Vance
-                                                td Pre-Sales Support
-                                                td New York
-                                                td 21
-                                                td 2011/12/12
-                                                td $106,450
-                                            tr.odd(role="row")
-                                                td.sorting_1 Cara Stevens
-                                                td Sales Assistant
-                                                td New York
-                                                td 46
-                                                td 2011/12/06
-                                                td $145,600
-                                            tr.even(role="row")
-                                                td.sorting_1 Cedric Kelly
-                                                td Senior Javascript Developer
-                                                td Edinburgh
-                                                td 22
-                                                td 2012/03/29
-                                                td $433,060
-                            .row
-                                .col-sm-5
-                                    #DataTables_Table_0_info.dataTables_info(role="status" aria-live="polite") Showing 1 to 10 of 57 entries
-                                .col-sm-7
-                                    #DataTables_Table_0_paginate.dataTables_paginate.paging_simple_numbers
-                                        ul.pagination
-                                            li#DataTables_Table_0_previous.paginate_button.previous.disabled
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0") Previous
-                                            li.paginate_button.active
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0") 1
-                                            li.paginate_button
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0") 2
-                                            li.paginate_button
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0") 3
-                                            li.paginate_button
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0") 4
-                                            li.paginate_button
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0") 5
-                                            li.paginate_button
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0") 6
-                                            li#DataTables_Table_0_next.paginate_button.next
-                                                a(href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0") Next
+                    table.table.table-stripped
+                        thead
+                            th Id
+                            th Name
+                            th Created Date
+                            th Action
+                        tbody
+                            if roles.length > 0
+                                each role, index in roles
+                                    tr
+                                        td #{index + 1}
+                                        td #{role.name}
+                                        td #{role.createdAt.format("DD/MM/YYYY")}
+                                        td
+                                            .row
+                                                .col-md-2.margin-bottom-0
+                                                    a.btn.btn-primary(href="/admin/roles/" + role._id + "/edit")
+                                                        i.material-icons(title="Edit") mode_edit
+                                                .col-md-2.margin-bottom-0
+                                                    form(method="POST" action="/admin/roles/" + role._id + "/destroy")
+                                                        | !{form.csrfField()}
+                                                        button.btn.btn-primary
+                                                            i.material-icons(title="Delete") delete

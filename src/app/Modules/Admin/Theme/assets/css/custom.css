@@ -30,3 +30,11 @@ span.error {
 .login-page {
     max-width: 404px !important;
 }
+
+.btn:not(.btn-link):not(.btn-circle) i {
+    top: 0px;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0px !important;
+}

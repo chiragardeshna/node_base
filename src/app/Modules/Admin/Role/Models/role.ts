@@ -1,13 +1,14 @@
 import {Schema} from "mongoose";
 import {model} from "mongoose";
+import {momentDate} from "../../helper";
 
 export let roleSchema: Schema = new Schema({
     name: String,
     description: String,
-    createdAt: Date
+    createdAt: {type: Date, get: momentDate}
 });
-roleSchema.pre("save", (next) => {
-    if (!this.createdAt) this.createdAt = new Date();
+roleSchema.pre("save", function (next) {
+    this.createdAt = new Date();
     next();
 });
 

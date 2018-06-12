@@ -29,5 +29,11 @@ export default (app: Application) => {
         return controller.create();
     });
 
+    router.get('/:id/edit', (req, res, next) => {
+        let controller = container.get<RoleController>("CONTROLLER_ROLE");
+        controller._boot(req, res);
+        return controller.edit(req.params.id);
+    });
+
     return router;
 }

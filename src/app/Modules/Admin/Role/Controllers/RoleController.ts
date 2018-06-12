@@ -10,12 +10,24 @@ export default class RoleController extends Controller {
         this.roleRepo = roleRepo;
     }
 
-    public index() {
-        return this.response.render("role/index");
+    public async index() {
+        let roles = await this.roleRepo.find();
+        return this.response.render("role/index", {roles});
     }
 
     public create() {
         return this.response.render("role/create");
+    }
+
+    public async edit(id) {
+        try {
+            let role = await this.roleRepo.findOne({_id: id});
+            if (!role) throw "Role not found.";
+            return this.response.render("role/edit", {role});
+        } catch (e) {
+            console.log(e);
+            this.response.redirect("/admin/roles/create");
+        }
     }
 
     public async store() {

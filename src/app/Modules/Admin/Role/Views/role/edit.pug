@@ -1,0 +1,36 @@
+extends theme/_master_layout
+
+block append content
+    .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            ol.breadcrumb.breadcrumb-bg-teal
+                li
+                    a(href="javascript:void(0);") Dashboard
+                li
+                    a(href="javascript:void(0);") Role
+                li.active Create New
+    br
+    .row.clearfix
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .card
+                .header
+                    h2 Edit Role
+                .body
+                    form(action="/admin/" + role.id + "edit" method="POST")
+                        | !{form.csrfField()}
+
+                        // Name
+                        | !{form.label('name', 'Name')}
+                        div.form-group
+                            div.form-line
+                                | !{form.text('name', role.name)}
+                            | !{form.error('name')}
+
+                        // Description
+                        | !{form.label('description', 'Description')}
+                        div.form-group
+                            div.form-line
+                                | !{form.textArea('description', role.description)}
+                            | !{form.error('description')}
+
+                        button.btn.btn-primary.m-t-15.waves-effect(type='submit') SAVE
