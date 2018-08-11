@@ -12,7 +12,7 @@ class ServiceProvider implements ContractServiceProvider {
     public async register(app: Application) {
 
         // TODO: Remove static path get it from config.
-        let baseDir = "D:" + path.sep + "websites" + path.sep + "node_base" + path.sep + "dist";
+        let baseDir = path.dirname(path.dirname(path.dirname(__dirname)));
 
         let view = app.express.get('view');
 
