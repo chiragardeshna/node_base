@@ -6,7 +6,7 @@ class MongoConnector {
 
     async connect(config): Promise<Mongoose> {
         let url = MongoConnector.url(config);
-        return this.connection = await connect(url);
+        return this.connection = await connect(url, config.options || []);
     }
 
     public static url(config): string {

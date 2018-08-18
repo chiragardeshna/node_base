@@ -6,7 +6,8 @@ export default {
             port: 27017,
             database: "node_base_typescript",
             username: "",
-            password: ""
+            password: "",
+            options: {useNewUrlParser: true}
         }
     }
 };
