@@ -1,0 +1,41 @@
+extends theme/_master_layout
+
+block append content
+    .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            ol.breadcrumb.breadcrumb-bg-teal
+                li
+                    a(href="javascript:void(0);") Dashboard
+                li.active Roles
+    br
+    .row.clearfix
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .card
+                .header
+                    h2 Roles
+                .body
+                    table.table.table-stripped
+                        thead
+                            th Id
+                            th First Name
+                            th Last Name
+                            //th Created Date
+                            th Action
+                        tbody
+                            if users.length > 0
+                                each user, index in users
+                                    tr
+                                        td #{index + 1}
+                                        td #{user.firstName}
+                                        td #{user.lastName}
+                                        //td #{user.createdAt.format("DD/MM/YYYY")}
+                                        td
+                                            .row
+                                                .col-md-2.margin-bottom-0
+                                                    a.btn.btn-primary(href="/admin/users/" + user._id + "/edit")
+                                                        i.material-icons(title="Edit") mode_edit
+                                                .col-md-2.margin-bottom-0
+                                                    form(method="POST" action="/admin/users/" + user._id + "/destroy")
+                                                        | !{form.csrfField()}
+                                                        button.btn.btn-primary
+                                                            i.material-icons(title="Delete") delete

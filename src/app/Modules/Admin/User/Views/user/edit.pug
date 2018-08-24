@@ -1,0 +1,43 @@
+extends theme/_master_layout
+
+block append content
+    .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            ol.breadcrumb.breadcrumb-bg-teal
+                li
+                    a(href="javascript:void(0);") Dashboard
+                li
+                    a(href="javascript:void(0);") User
+                li.active Create New
+    br
+    .row.clearfix
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .card
+                .header
+                    h2 User
+                .body
+                    form(action="/admin/users/" + user._id + "/edit" method="POST")
+                        | !{form.csrfField()}
+
+                        // First Name
+                        | !{form.label('firstName', 'First Name')}
+                        div.form-group
+                            div.form-line
+                                | !{form.text('firstName', user.firstName)}
+                            | !{form.error('firstName')}
+
+                        // Last Name
+                        | !{form.label('lastName', 'Last Name')}
+                        div.form-group
+                            div.form-line
+                                | !{form.text('lastName', user.lastName)}
+                            | !{form.error('lastName')}
+
+                        // Email
+                        | !{form.label('email', 'Email')}
+                        div.form-group
+                            div.form-line
+                                | !{form.text('email', user.email)}
+                            | !{form.error('email')}
+
+                        button.btn.btn-primary.m-t-15.waves-effect(type='submit') SAVE

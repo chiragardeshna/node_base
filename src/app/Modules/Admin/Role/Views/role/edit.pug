@@ -16,7 +16,7 @@ block append content
                 .header
                     h2 Edit Role
                 .body
-                    form(action="/admin/" + role.id + "edit" method="POST")
+                    form(action="/admin/roles/" + role.id + "/edit" method="POST")
                         | !{form.csrfField()}
 
                         // Name

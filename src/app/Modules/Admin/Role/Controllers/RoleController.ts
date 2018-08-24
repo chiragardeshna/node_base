@@ -26,7 +26,7 @@ export default class RoleController extends Controller {
             return this.response.render("role/edit", {role});
         } catch (e) {
             console.log(e);
-            this.response.redirect("/admin/roles/create");
+            this.response.redirect("/admin/roles");
         }
     }
 
